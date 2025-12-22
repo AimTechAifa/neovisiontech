@@ -81,7 +81,7 @@ const Header = () => {
               {navLinks.map((link, i) => (
                 <Link
                   key={i}
-                  href={link.href}
+                  to={link.href}
                   className="px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
                 >
                   {link.label}
