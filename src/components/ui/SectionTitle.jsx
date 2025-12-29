@@ -19,7 +19,7 @@ const SectionTitle = ({
           <Badge variant={badgeVariant}>{badge}</Badge>
         </div>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-4">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4">
         {title}
         {highlightedText && (
           <>
@@ -31,7 +31,7 @@ const SectionTitle = ({
         )}
       </h2>
       {description && (
-        <p className="text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed">
+        <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
           {description}
         </p>
       )}

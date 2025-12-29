@@ -6,11 +6,11 @@ const Contact = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white py-20 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] py-20 lg:py-28">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-500px h-500px bg-linear-to-br from-purple-100 to-indigo-100 rounded-full blur-3xl opacity-50" />
-          <div className="absolute top-1/2 -left-40 w-400px h-400px bg-linear-to-br from-blue-100 to-cyan-100 rounded-full blur-3xl opacity-40" />
+          <div className="absolute -top-40 -right-40 w-500px h-500px bg-linear-to-br from-purple-100 to-indigo-100 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-full blur-3xl opacity-50" />
+          <div className="absolute top-1/2 -left-40 w-400px h-400px bg-linear-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-full blur-3xl opacity-40" />
         </div>
 
         <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
@@ -29,33 +29,33 @@ const Contact = () => {
               <Badge variant="blue" dot animated>
                 Get in Touch
               </Badge>
-              
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
-                Let's Build the 
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                Let's Build the
                 <br />
                 <span className="bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   Future Together
                 </span>
               </h1>
-              
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
+
+              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
                 Reach out to our enterprise team for inquiries, technical support, or strategic partnership opportunities. We usually respond within 24 hours.
               </p>
-              
+
               {/* Quick Contact Buttons */}
               <div className="flex flex-wrap gap-4 mt-4">
-                <a 
-                  href="mailto:enterprise@neovisiontech.com" 
-                  className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors text-sm font-medium"
+                <a
+                  href="mailto:enterprise@neovisiontech.com"
+                  className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-sm font-medium"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   enterprise@neovisiontech.com
                 </a>
-                <a 
-                  href="tel:+15550123456" 
-                  className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors text-sm font-medium"
+                <a
+                  href="tel:+15550123456"
+                  className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-sm font-medium"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -79,7 +79,7 @@ const Contact = () => {
                 </div>
 
                 {/* Floating Chat Card */}
-                <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4 border border-slate-100">
+                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-white/10 rounded-xl shadow-xl dark:shadow-black/20 p-4 border border-slate-100 dark:border-white/20">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-linear-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -87,14 +87,14 @@ const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-slate-900">24/7 Support</p>
-                      <p className="text-xs text-slate-500">We're here to help</p>
+                      <p className="text-sm font-bold text-slate-900 dark:text-white">24/7 Support</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">We're here to help</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Floating Response Card */}
-                <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-4 border border-slate-100">
+                <div className="absolute -top-4 -right-4 bg-white dark:bg-white/10 rounded-xl shadow-xl dark:shadow-black/20 p-4 border border-slate-100 dark:border-white/20">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-linear-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,14 +102,14 @@ const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-slate-900">Fast Response</p>
-                      <p className="text-xs text-slate-500">Within 24 hours</p>
+                      <p className="text-sm font-bold text-slate-900 dark:text-white">Fast Response</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">Within 24 hours</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute -z-10 top-8 -right-8 w-full h-full bg-linear-to-br from-blue-100 to-indigo-100 rounded-2xl" />
+                <div className="absolute -z-10 top-8 -right-8 w-full h-full bg-linear-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl" />
               </div>
             </div>
           </div>
@@ -117,54 +117,54 @@ const Contact = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-transparent">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           {/* Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Contact Form (Span 7) */}
             <div className="lg:col-span-7">
-              <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-slate-200">
+              <div className="bg-white dark:bg-white/5 rounded-xl p-6 md:p-8 shadow-sm border border-slate-200 dark:border-white/10">
                 <form className="flex flex-col gap-6">
                   {/* Row 1 */}
                   <div className="flex flex-col md:flex-row gap-6">
                     <label className="flex flex-col flex-1">
-                      <span className="text-slate-900 text-sm font-semibold mb-2">Full Name</span>
-                      <input 
-                        type="text" 
-                        className="form-input w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 px-4 text-base placeholder:text-slate-500 text-slate-900 transition-all" 
-                        placeholder="Jane Doe" 
+                      <span className="text-slate-900 dark:text-white text-sm font-semibold mb-2">Full Name</span>
+                      <input
+                        type="text"
+                        className="form-input w-full rounded-lg border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/5 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 px-4 text-base placeholder:text-slate-500 dark:placeholder:text-slate-400 text-slate-900 dark:text-white transition-all"
+                        placeholder="Jane Doe"
                       />
                     </label>
                     <label className="flex flex-col flex-1">
                       <span className="text-slate-900 text-sm font-semibold mb-2">Work Email</span>
-                      <input 
-                        type="email" 
-                        className="form-input w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 px-4 text-base placeholder:text-slate-500 text-slate-900 transition-all" 
-                        placeholder="jane@company.com" 
+                      <input
+                        type="email"
+                        className="form-input w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 px-4 text-base placeholder:text-slate-500 text-slate-900 transition-all"
+                        placeholder="jane@company.com"
                       />
                     </label>
                   </div>
-                  
+
                   {/* Row 2 */}
                   <div className="flex flex-col md:flex-row gap-6">
                     <label className="flex flex-col flex-1">
                       <span className="text-slate-900 text-sm font-semibold mb-2">Company Name</span>
-                      <input 
-                        type="text" 
-                        className="form-input w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 px-4 text-base placeholder:text-slate-500 text-slate-900 transition-all" 
-                        placeholder="Acme Corp" 
+                      <input
+                        type="text"
+                        className="form-input w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 px-4 text-base placeholder:text-slate-500 text-slate-900 transition-all"
+                        placeholder="Acme Corp"
                       />
                     </label>
                     <label className="flex flex-col flex-1">
                       <span className="text-slate-900 text-sm font-semibold mb-2">Job Title</span>
-                      <input 
-                        type="text" 
-                        className="form-input w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 px-4 text-base placeholder:text-slate-500 text-slate-900 transition-all" 
-                        placeholder="CTO" 
+                      <input
+                        type="text"
+                        className="form-input w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 px-4 text-base placeholder:text-slate-500 text-slate-900 transition-all"
+                        placeholder="CTO"
                       />
                     </label>
                   </div>
-                  
+
                   {/* Row 3 */}
                   <div className="flex flex-col md:flex-row gap-6">
                     <label className="flex flex-col flex-1">
@@ -188,16 +188,16 @@ const Contact = () => {
                       </select>
                     </label>
                   </div>
-                  
+
                   {/* Message Area */}
                   <label className="flex flex-col w-full">
                     <span className="text-slate-900 text-sm font-semibold mb-2">How can we help?</span>
-                    <textarea 
-                      className="form-textarea w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 min-h-140px p-4 text-base placeholder:text-slate-500 text-slate-900 transition-all resize-y" 
+                    <textarea
+                      className="form-textarea w-full rounded-lg border-slate-300 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 min-h-140px p-4 text-base placeholder:text-slate-500 text-slate-900 transition-all resize-y"
                       placeholder="Tell us more about your project needs..."
                     ></textarea>
                   </label>
-                  
+
                   {/* Submit Action */}
                   <div className="pt-2">
                     <Button
@@ -215,7 +215,7 @@ const Contact = () => {
                 </form>
               </div>
             </div>
-            
+
             {/* Right Column: Info Sidebar (Span 5) */}
             <div className="lg:col-span-5 flex flex-col gap-8">
               {/* Contact Info Blocks */}
@@ -229,15 +229,15 @@ const Contact = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-slate-900 font-bold text-lg mb-1">Headquarters</h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      123 Innovation Drive,<br/>
-                      Tech Valley, CA 94043<br/>
+                    <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-1">Headquarters</h3>
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      123 Innovation Drive,<br />
+                      Tech Valley, CA 94043<br />
                       United States
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Email */}
                 <div className="flex gap-4 items-start">
                   <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm border border-slate-200 text-blue-600">
@@ -257,7 +257,7 @@ const Contact = () => {
                     <a className="text-blue-600 font-medium hover:underline" href="mailto:enterprise@neovisiontech.com">enterprise@neovisiontech.com</a>
                   </div>
                 </div>
-                
+
                 {/* Phone */}
                 <div className="flex gap-4 items-start">
                   <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm border border-slate-200 text-blue-600">
@@ -274,11 +274,11 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Map Section */}
               <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm mt-4 relative group h-64 w-full">
-                <img 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG94YMWTGGulWk1t9rVXX_4boCz9Lq-n2u1RM9HIq1Xmuxnyqd4MgYDF3dvijgRbJxPKwJK877jkhuYp3DOPa52jOgYNttHhqfAQw0fakxde1UhJGwnJlt4O3lKDpfjvOOgNXVnDs0S76Th6TGOpDjPWV0mETh3xZ8YNQt2LFI2L4wGsQ5yrXNWoazUIsnNQINKOdr5lxFA3jAo8XzWngOtSAzn9z1KIj0CxiO2Vpo2IrdiOH6Ywl2AG5bivqXD4eBfx6sZsDIMg" 
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG94YMWTGGulWk1t9rVXX_4boCz9Lq-n2u1RM9HIq1Xmuxnyqd4MgYDF3dvijgRbJxPKwJK877jkhuYp3DOPa52jOgYNttHhqfAQw0fakxde1UhJGwnJlt4O3lKDpfjvOOgNXVnDs0S76Th6TGOpDjPWV0mETh3xZ8YNQt2LFI2L4wGsQ5yrXNWoazUIsnNQINKOdr5lxFA3jAo8XzWngOtSAzn9z1KIj0CxiO2Vpo2IrdiOH6Ywl2AG5bivqXD4eBfx6sZsDIMg"
                   alt="Map location of NeoVisionTech Headquarters"
                   className="object-cover w-full h-full grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
                 />
@@ -298,41 +298,41 @@ const Contact = () => {
       </section>
 
       {/* Trust Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-slate-50 dark:bg-white/[0.02]">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center mb-12">
-            <p className="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-8">Trusted by industry leaders for data security & reliability</p>
-            
+            <p className="text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider mb-8">Trusted by industry leaders for data security & reliability</p>
+
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
               {/* Using Icon based placeholders for logos */}
-              <div className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <div className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg> 
+                </svg>
                 Pyramid
               </div>
               <div className="text-xl font-bold text-slate-900 flex items-center gap-2">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg> 
+                </svg>
                 InfiniteLoop
               </div>
               <div className="text-xl font-bold text-slate-900 flex items-center gap-2">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg> 
+                </svg>
                 HexaTech
               </div>
               <div className="text-xl font-bold text-slate-900 flex items-center gap-2">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg> 
+                </svg>
                 BoltShift
               </div>
               <div className="text-xl font-bold text-slate-900 flex items-center gap-2">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg> 
+                </svg>
                 GlobalBank
               </div>
             </div>
@@ -340,16 +340,16 @@ const Contact = () => {
 
           {/* Additional Trust Indicators */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+            <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-slate-200 dark:border-white/10 shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full mb-4">
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Data Security</h3>
-              <p className="text-slate-600">Enterprise-grade security with ISO 27001 and SOC 2 compliance for all client data.</p>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Data Security</h3>
+              <p className="text-slate-600 dark:text-slate-400">Enterprise-grade security with ISO 27001 and SOC 2 compliance for all client data.</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mb-4">
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -359,7 +359,7 @@ const Contact = () => {
               <h3 className="text-xl font-bold text-slate-900 mb-2">Clear Terms</h3>
               <p className="text-slate-600">Transparent contracts and SLAs with no hidden fees or complicated terms.</p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full mb-4">
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -421,34 +421,34 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-transparent">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center mb-16">
             <Badge variant="green" className="mb-4">FAQs</Badge>
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               Find quick answers to common questions about our services, pricing, and support
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 mb-3">What industries do you specialize in?</h3>
-              <p className="text-slate-600">We work across multiple sectors including finance, healthcare, retail, manufacturing, and government, with specialized teams dedicated to each vertical.</p>
+            <div className="bg-slate-50 dark:bg-white/5 p-6 rounded-xl border border-slate-200 dark:border-white/10">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">What industries do you specialize in?</h3>
+              <p className="text-slate-600 dark:text-slate-400">We work across multiple sectors including finance, healthcare, retail, manufacturing, and government, with specialized teams dedicated to each vertical.</p>
             </div>
-            
+
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
               <h3 className="text-xl font-bold text-slate-900 mb-3">Do you offer custom development services?</h3>
               <p className="text-slate-600">Yes, we provide end-to-end custom software development with dedicated teams, agile methodology, and a focus on your specific business requirements.</p>
             </div>
-            
+
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
               <h3 className="text-xl font-bold text-slate-900 mb-3">What support options are available?</h3>
               <p className="text-slate-600">We offer tiered support packages including standard (8/5), premium (16/7), and enterprise (24/7) with dedicated account managers and SLAs.</p>
             </div>
-            
+
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
               <h3 className="text-xl font-bold text-slate-900 mb-3">How is pricing structured?</h3>
               <p className="text-slate-600">We offer flexible pricing models including subscription-based, project-based, and time-and-materials. Each solution is tailored to your specific needs.</p>

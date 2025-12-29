@@ -9,11 +9,11 @@ const Badge = ({
   className = "",
 }) => {
   const variants = {
-    default: "bg-slate-100 border-slate-200 text-slate-600",
-    blue: "bg-blue-50 border-blue-100 text-blue-600",
-    green: "bg-emerald-50 border-emerald-100 text-emerald-600",
-    amber: "bg-amber-50 border-amber-100 text-amber-600",
-    purple: "bg-purple-50 border-purple-100 text-purple-600",
+    default: "bg-slate-100 dark:bg-white/10 border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300",
+    blue: "bg-blue-50 dark:bg-blue-500/10 border-blue-100 dark:border-blue-500/20 text-blue-600 dark:text-blue-400",
+    green: "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400",
+    amber: "bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20 text-amber-600 dark:text-amber-400",
+    purple: "bg-purple-50 dark:bg-purple-500/10 border-purple-100 dark:border-purple-500/20 text-purple-600 dark:text-purple-400",
   };
 
   return (
