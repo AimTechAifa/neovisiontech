@@ -1,7 +1,8 @@
 // src/pages/About.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Badge } from "../components/ui";
+import { Button, Card, Badge, RevealOnScroll, RevealStagger, Breadcrumbs } from "../components/ui";
+import SEO from "../components/SEO";
 
 const About = () => {
   // Team members data
@@ -14,7 +15,7 @@ const About = () => {
     {
       name: "Mohd Shamsher Siddiqui ",
       role: "Managing Director",
-      // image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+      image: "/md-image.png",
     },
     {
       name: " Dinesh Adabala ",
@@ -36,22 +37,29 @@ const About = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-white">
+      <SEO
+        title="About Us | NeoVisionTech"
+        description="Learn about NeoVisionTech, our mission, vision, and the expert team driving digital transformation across industries."
+        canonical="https://neovisiontech.com/about"
+      />
 
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative w-full overflow-hidden  bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a]">
+        <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] pt-8">
           {/* Background decorative elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute -top-40 -right-40 w-500px h-500px  bg-linear-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl opacity-50" />
             <div className="absolute top-1/2 -left-40 w-400px h-400px  bg-linear-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-full blur-3xl opacity-40" />
           </div>
 
-          <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12 py-16 lg:py-20">
+          <Breadcrumbs />
+
+          <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12 pb-16 lg:pb-20">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left: Text Content */}
               <div className="flex flex-col gap-8 order-2 lg:order-1 lg:col-span-5">
-                <div className="flex flex-col gap-6">
+                <RevealOnScroll className="flex flex-col gap-6">
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
                     Innovating for
                     <br />
@@ -62,7 +70,7 @@ const About = () => {
                   <p className="text-lg text-slate-600 dark:text-slate-300 max-w-lg leading-relaxed">
                     NeoVisionTech partners with global enterprises to drive digital transformation through scalable, intelligent infrastructure. We build the systems that power the future.
                   </p>
-                </div>
+                </RevealOnScroll>
 
                 <div>
                   <div className="flex flex-col sm:flex-row gap-4">
@@ -97,7 +105,7 @@ const About = () => {
               </div>
 
               {/* Right: Image */}
-              <div className="relative order-1 lg:order-2 lg:col-span-7">
+              <RevealOnScroll animation="fade-left" className="relative order-1 lg:order-2 lg:col-span-7">
                 <div className="relative w-full">
                   {/* Glow effect */}
                   <div className="absolute -inset-4  bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl blur-2xl opacity-20 dark:opacity-40" />
@@ -111,7 +119,7 @@ const About = () => {
                     <div className="absolute inset-0  bg-linear-to-t from-slate-900/30 via-transparent to-transparent" />
                   </div>
                 </div>
-              </div>
+              </RevealOnScroll>
             </div>
           </div>
         </section>
@@ -120,7 +128,7 @@ const About = () => {
         <section className="w-full bg-slate-50 dark:bg-white/[0.02] py-16 lg:py-24">
           <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
-              <div className="flex flex-col gap-6">
+              <RevealOnScroll className="flex flex-col gap-6">
                 <div>
                   <Badge variant="blue" className="mb-6">Our Story</Badge>
                   <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
@@ -135,9 +143,9 @@ const About = () => {
                 <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                   Founded in 2014, NeoVisionTech began with a simple premise: enterprise software shouldn't be cumbersome. Over the last decade, we have expanded our footprint across three continents, serving Fortune 500 companies and agile startups alike. Our growth is a testament to our core belief that technology serves people, not the other way around.
                 </p>
-              </div>
+              </RevealOnScroll>
 
-              <div className="relative">
+              <RevealOnScroll animation="fade-left" className="relative">
                 <div className="relative group">
                   {/* Decorative element */}
                   <div className="absolute -bottom-6 -left-6 w-32 h-32  bg-linear-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl -z-10"></div>
@@ -151,7 +159,7 @@ const About = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </RevealOnScroll>
             </div>
           </div>
         </section>
@@ -160,7 +168,7 @@ const About = () => {
         <section className="w-full py-16 lg:py-24 bg-white dark:bg-transparent">
           <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
             <div className="flex flex-col gap-12">
-              <div>
+              <RevealOnScroll>
                 <Badge variant="purple" className="mb-6">Philosophy</Badge>
                 <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
                   Driven by Purpose and Precision
@@ -168,7 +176,7 @@ const About = () => {
                 <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
                   We don't just write code; we architect solutions that stand the test of time.
                 </p>
-              </div>
+              </RevealOnScroll>
 
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Mission Card */}
@@ -194,7 +202,7 @@ const About = () => {
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Our Vision</h3>
                   <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                    A world where digital infrastructure is seamless, intelligent, and accessible, enabling businesses of all sizes to compete on a global stage without technical friction.
+                    We envision a future where digital infrastructure becomes as seamless and essential as the air we breathe—intelligent, adaptive, and universally accessible. Our goal is to democratize advanced technology, enabling businesses of every size to compete globally without barriers. By bridging the gap between human potential and artificial intelligence, we aspire to create a connected ecosystem where innovation thrives, efficiency is maximized, and technical friction is a relic of the past.
                   </p>
                 </Card>
               </div>
@@ -227,15 +235,15 @@ const About = () => {
         <section className="w-full py-20 bg-white dark:bg-transparent">
           <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
             <div className="flex flex-col gap-12">
-              <div>
+              <RevealOnScroll>
                 <Badge variant="green" className="mb-6">Leadership</Badge>
                 <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">Meet Our Team</h2>
                 <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
                   Our diverse team brings together decades of experience in software engineering, product design, and strategic consulting.
                 </p>
-              </div>
+              </RevealOnScroll>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {teamMembers.map((member, i) => (
                   <div key={i} className="group">
                     <div className="relative overflow-hidden rounded-2xl mb-4">
@@ -252,7 +260,7 @@ const About = () => {
                     <p className="text-sm text-slate-500 dark:text-slate-400">{member.role}</p>
                   </div>
                 ))}
-              </div>
+              </RevealStagger>
             </div>
           </div>
         </section>

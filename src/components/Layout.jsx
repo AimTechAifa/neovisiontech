@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 import { AnimatedBackground } from "./ui";
+import { Toaster } from "sonner";
 
 const Layout = () => {
   return (
@@ -14,6 +15,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <Toaster position="bottom-right" theme="system" />
     </div>
   );
 };

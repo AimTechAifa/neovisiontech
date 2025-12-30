@@ -1,7 +1,7 @@
 // src/pages/Technologies.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Badge } from "../components/ui";
+import { Button, Badge, RevealOnScroll, RevealStagger, Breadcrumbs, GlowingEffect, TechCard } from "../components/ui";
 import { technologies, TechIcons } from "../data/technologies";
 
 const Technologies = () => {
@@ -187,25 +187,19 @@ const Technologies = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] py-20 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] pt-8 pb-20 lg:pb-28">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-500px h-500px bg-linear-to-br from-purple-100 to-indigo-100 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-full blur-3xl opacity-50" />
           <div className="absolute top-1/2 -left-40 w-400px h-400px bg-linear-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-full blur-3xl opacity-40" />
         </div>
 
+        <Breadcrumbs />
         <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div className="flex flex-col items-start gap-6">
-              {/* Breadcrumbs */}
-              {/* <nav className="flex items-center gap-2 text-sm text-slate-500">
-                <a href="/" className="hover:text-blue-600 transition-colors">Home</a>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <span className="font-medium text-slate-900">Technologies</span>
-              </nav> */}
+            <RevealOnScroll className="flex flex-col items-start gap-6">
+
 
               <Badge variant="purple" dot animated>
                 Our Tech Stack
@@ -238,10 +232,10 @@ const Technologies = () => {
                   <span className="text-sm text-slate-500 dark:text-slate-400">Industry Standard</span>
                 </div>
               </div>
-            </div>
+            </RevealOnScroll>
 
             {/* Right Image */}
-            <div className="relative hidden lg:block">
+            <RevealOnScroll animation="fade-left" className="relative hidden lg:block">
               <div className="relative">
                 {/* Main Image */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
@@ -286,7 +280,7 @@ const Technologies = () => {
                 {/* Decorative Elements */}
                 <div className="absolute -z-10 top-8 -right-8 w-full h-full bg-linear-to-br from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-2xl" />
               </div>
-            </div>
+            </RevealOnScroll>
           </div>
         </div>
       </section>
@@ -327,45 +321,49 @@ const Technologies = () => {
               {/* Tech Cards Grid */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {techs.map((tech, index) => (
-                  <div
-                    key={index}
-                    className={`group flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-6 transition-all duration-300 ${sectionConfig[sectionName].borderHover} hover:shadow-xl dark:shadow-black/30 hover:-translate-y-1`}
-                  >
-                    {/* Header with Icon and Badge */}
-                    <div className="flex items-center justify-between">
-                      <div
-                        className="w-14 h-14 rounded-xl p-2.5 transition-transform duration-300 group-hover:scale-110"
-                        style={{ backgroundColor: `${tech.color}15` }}
-                      >
-                        {tech.icon}
-                      </div>
-                      <span className="rounded-full bg-slate-100 dark:bg-white/10 px-3 py-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
-                        {tech.type}
-                      </span>
+                  <div key={index} className="relative rounded-xl p-[1px] group">
+                    <div className="absolute inset-0 rounded-xl">
+                      <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} />
                     </div>
-
-                    {/* Content */}
-                    <div>
-                      <h3
-                        className="text-lg font-bold text-slate-900 group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300"
-                        style={{
-                          '--hover-color': tech.color,
-                        }}
-                        onMouseEnter={(e) => e.target.style.color = tech.color}
-                        onMouseLeave={(e) => e.target.style.color = ''}
-                      >
-                        {tech.name}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-                        {tech.description}
-                      </p>
-                    </div>
-
-                    {/* Hover indicator */}
                     <div
-                      className="h-1 w-0 group-hover:w-full transition-all duration-300 rounded-full"
-                      style={{ backgroundColor: tech.color }}
-                    />
+                      className={`relative h-full flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-6 transition-all duration-300 ${sectionConfig[sectionName].borderHover} hover:shadow-xl dark:shadow-black/30 hover:-translate-y-1`}
+                    >
+                      {/* Header with Icon and Badge */}
+                      <div className="flex items-center justify-between">
+                        <div
+                          className="w-14 h-14 rounded-xl p-2.5 transition-transform duration-300 group-hover:scale-110"
+                          style={{ backgroundColor: `${tech.color}15` }}
+                        >
+                          {tech.icon}
+                        </div>
+                        <span className="rounded-full bg-slate-100 dark:bg-white/10 px-3 py-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                          {tech.type}
+                        </span>
+                      </div>
+
+                      {/* Content */}
+                      <div>
+                        <h3
+                          className="text-lg font-bold text-slate-900 group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300"
+                          style={{
+                            '--hover-color': tech.color,
+                          }}
+                          onMouseEnter={(e) => e.target.style.color = tech.color}
+                          onMouseLeave={(e) => e.target.style.color = ''}
+                        >
+                          {tech.name}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                          {tech.description}
+                        </p>
+                      </div>
+
+                      {/* Hover indicator */}
+                      <div
+                        className="h-1 w-0 group-hover:w-full transition-all duration-300 rounded-full"
+                        style={{ backgroundColor: tech.color }}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -377,16 +375,16 @@ const Technologies = () => {
       {/* Stats Section */}
       <section className="py-16 bg-slate-50 dark:bg-white/[0.02]">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center mb-12">
+          <RevealOnScroll className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
               Why Our Tech Stack Matters
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               We carefully select technologies that deliver performance, scalability, and maintainability
             </p>
-          </div>
+          </RevealOnScroll>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <RevealStagger className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: "99.9%", label: "Uptime Guaranteed", icon: "⚡" },
               { value: "10x", label: "Faster Development", icon: "🚀" },
@@ -401,14 +399,14 @@ const Technologies = () => {
                 <span className="text-sm text-slate-600 dark:text-slate-400 font-medium">{stat.label}</span>
               </div>
             ))}
-          </div>
+          </RevealStagger>
         </div>
       </section>
 
       {/* All Technologies Overview */}
       <section className="py-20 bg-white dark:bg-transparent">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center mb-12">
+          <RevealOnScroll className="text-center mb-12">
             <Badge variant="blue" className="mb-6">Complete Stack</Badge>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
               All Technologies at a Glance
@@ -416,27 +414,19 @@ const Technologies = () => {
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               A comprehensive view of our entire technology ecosystem
             </p>
-          </div>
+          </RevealOnScroll>
 
           {/* Technology Grid with Icons */}
-          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-4 md:gap-6">
+          <RevealStagger className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-4 md:gap-6">
             {technologies.map((tech, i) => (
-              <div
+              <TechCard
                 key={i}
-                className="group flex flex-col items-center gap-2 p-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 hover:border-slate-200 dark:hover:border-white/20 hover:shadow-lg hover:bg-white dark:hover:bg-white/10 transition-all duration-300 cursor-pointer"
-              >
-                <div
-                  className="w-10 h-10 md:w-12 md:h-12 p-2 rounded-lg transition-transform duration-300 group-hover:scale-110"
-                  style={{ backgroundColor: `${tech.color}15` }}
-                >
-                  {tech.icon}
-                </div>
-                <span className="text-xs font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">
-                  {tech.name}
-                </span>
-              </div>
+                name={tech.name}
+                color={tech.color}
+                icon={tech.icon}
+              />
             ))}
-          </div>
+          </RevealStagger>
         </div>
       </section>
 

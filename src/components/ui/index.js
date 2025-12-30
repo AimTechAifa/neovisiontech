@@ -11,3 +11,6 @@ export { default as RevealOnScroll, RevealStagger } from "./RevealOnScroll";
 export { default as GradientText } from "./GradientText";
 export { default as GlassCard } from "./GlassCard";
 export { default as ThemeToggle } from "./ThemeToggle";
+export { default as Breadcrumbs } from "./Breadcrumbs";
+export { GlowingEffect } from "./glowing-effect";
+export { FloatingPaths, BackgroundPaths } from "./background-paths";

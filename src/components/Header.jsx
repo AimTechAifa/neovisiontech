@@ -22,7 +22,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative p-1.5 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 backdrop-blur-sm">
+            <div className="relative p-1.5 rounded-xl bg-slate-900 dark:bg-gradient-to-br dark:from-blue-950/30 dark:to-indigo-950/30 backdrop-blur-sm shadow-md">
               <img
                 src="/neovision-logo.png"
                 alt="NeoVision Tech Logo"

@@ -1,6 +1,7 @@
 // src/pages/Services.jsx
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import {
   Brain,
   MessageSquare,
@@ -25,7 +26,8 @@ import {
   GlassCard,
   RevealOnScroll,
   RevealStagger,
-  GradientText
+  GradientText,
+  Breadcrumbs
 } from "../components/ui";
 
 const Services = () => {
@@ -35,7 +37,7 @@ const Services = () => {
       title: "AI Business Automation",
       description: "Intelligent chatbots and workflow automation reducing manual effort by 80%.",
       image: "https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/contact",
+      link: "/services/ai-business-automation-services",
       category: "AI & Automation"
     },
     {
@@ -43,7 +45,7 @@ const Services = () => {
       title: "Agentic AI Chatbots",
       description: "Agent-based AI systems that reason, act, and automate - not just answer questions.",
       image: "https://images.pexels.com/photos/8438979/pexels-photo-8438979.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/contact",
+      link: "/services/agentic-ai-chatbot-development",
       category: "AI & Automation"
     },
     {
@@ -67,7 +69,7 @@ const Services = () => {
       title: "Custom Applications",
       description: "Tailor-made web and mobile apps built for real business needs - not generic templates.",
       image: "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/projects",
+      link: "/services/custom-web-application-development",
       category: "Development"
     },
     {
@@ -75,7 +77,7 @@ const Services = () => {
       title: "SEO-Optimized Websites",
       description: "Search-engine ready sites with location-based SEO, clean structures, and performance optimization.",
       image: "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/contact",
+      link: "/services/seo-optimized-website-development",
       category: "Marketing"
     },
     {
@@ -83,7 +85,7 @@ const Services = () => {
       title: "React SEO Solutions",
       description: "Pre-rendering for SPAs with SEO-friendly HTML snapshots - solving React's visibility problems.",
       image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/contact",
+      link: "/services/seo-optimized-website-development",
       category: "Solutions"
     },
     {
@@ -91,7 +93,7 @@ const Services = () => {
       title: "Web Development",
       description: "Cutting-edge websites combining stunning design with powerful functionality.",
       image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/contact",
+      link: "/services/custom-web-application-development",
       category: "Development"
     },
     {
@@ -99,7 +101,7 @@ const Services = () => {
       title: "Mobile Apps",
       description: "Native and cross-platform mobile solutions for iOS and Android.",
       image: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/projects",
+      link: "/services/mobile-app-development-services",
       category: "Mobile"
     },
     {
@@ -123,7 +125,7 @@ const Services = () => {
       title: "MVP Development",
       description: "Rapid prototyping and minimum viable products to test your ideas in the market.",
       image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/contact",
+      link: "/services/custom-web-application-development",
       category: "Startup"
     },
     {
@@ -131,7 +133,7 @@ const Services = () => {
       title: "Digital Marketing",
       description: "Comprehensive digital marketing strategies to boost your online presence and ROI.",
       image: "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/contact",
+      link: "/services/digital-marketing-services",
       category: "Marketing"
     },
     {
@@ -139,7 +141,7 @@ const Services = () => {
       title: "UI/UX Design",
       description: "Beautiful, intuitive interfaces and compelling visual identities for your brand.",
       image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/contact",
+      link: "/services/ui-ux-design-services",
       category: "Design"
     },
     {
@@ -147,7 +149,7 @@ const Services = () => {
       title: "Industrial Training",
       description: "Professional training programs in cutting-edge technologies for students and professionals.",
       image: "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=800",
-      link: "/trainings",
+      link: "/services/industrial-training-programs",
       category: "Education"
     }
   ];
@@ -202,8 +204,14 @@ const Services = () => {
 
   return (
     <div className="pb-20">
+      <SEO
+        title="Our Services | NeoVisionTech"
+        description="Explore our comprehensive technology services including AI Business Automation, Agentic AI Chatbots, Custom Web App Development, and SEO Optimization."
+        canonical="https://neovisiontech.com/services"
+      />
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden py-20 lg:py-28">
+      <section className="relative w-full overflow-hidden pt-8 pb-20 lg:pb-28">
+        <Breadcrumbs />
         <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left: Text Content */}
@@ -254,7 +262,7 @@ const Services = () => {
           <RevealOnScroll className="mb-16">
             <Badge variant="purple" className="mb-6">Core Capabilities</Badge>
             <h2 className="text-3xl md:text-5xl font-black mb-6">
-              Full-Stack <span className="text-blue-600 dark:text-blue-400">Capabilities</span>
+              Our Core <span className="text-blue-600 dark:text-blue-400">Capabilities</span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
               We provide a wide range of specialized services, from high-level AI strategy to ground-level industrial automation and training.
@@ -278,13 +286,16 @@ const Services = () => {
                     </span>
                   </div>
                   {/* Icon Card */}
-                  <div className="absolute -bottom-6 left-6 w-12 h-12 rounded-xl bg-linear-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white shadow-xl ring-4 ring-white dark:ring-[#111] transform group-hover:-translate-y-2 transition-transform">
-                    {service.icon}
-                  </div>
+                  {/* Icon removed from here */}
                 </div>
 
                 {/* Content */}
-                <div className="p-8 pt-10 flex-grow flex flex-col">
+                <div className="p-6 flex-grow flex flex-col">
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                  </div>
+
                   <h3 className="text-lg font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {service.title}
                   </h3>

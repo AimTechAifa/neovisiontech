@@ -1,7 +1,9 @@
 // src/pages/Projects.jsx
 import React, { useState } from "react";
-import { Button, Badge } from "../components/ui";
+import { Link } from "react-router-dom";
+import { Button, Badge, RevealOnScroll, RevealStagger, Breadcrumbs } from "../components/ui";
 import { technologies } from "../data/technologies";
+import SEO from "../components/SEO";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -11,6 +13,7 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      slug: "alladin-ice-delivery-app",
       category: "Mobile Apps",
       title: "Alladin Ice – On-Demand Ice Delivery Platform",
       platform: "iOS & Android",
@@ -28,6 +31,7 @@ const Projects = () => {
     },
     {
       id: 2,
+      slug: "metfolio-gold-investment-app",
       category: "FinTech",
       title: "Metfolio – Invest in Gold",
       platform: "iOS & Android",
@@ -46,6 +50,7 @@ const Projects = () => {
     },
     {
       id: 3,
+      slug: "srkr-alumni-network-app",
       category: "Community",
       title: "SRKR Alumni Network Application",
       platform: "Android",
@@ -64,6 +69,7 @@ const Projects = () => {
     },
     {
       id: 4,
+      slug: "celkon-digital-enterprise-app",
       category: "Enterprise",
       title: "Celkon Digital – Internal Enterprise Application",
       platform: "Android",
@@ -82,6 +88,7 @@ const Projects = () => {
     },
     {
       id: 5,
+      slug: "avoota-hotel-booking-app",
       category: "Travel",
       title: "Avoota – Hotel Booking & Travel Platform",
       platform: "Android",
@@ -100,14 +107,15 @@ const Projects = () => {
     },
     {
       id: 6,
+      slug: "international-edtech-platform",
       category: "EdTech",
-      title: "Aim Technologies – International EdTech Platform",
+      title: "International EdTech Platform",
       platform: "Web Platform",
       industry: "Education / E-Learning / Training",
       description: "Large-scale, geo-location aware EdTech platform built for global reach and local SEO dominance. Features dynamic routing, multi-level course architecture, secure authentication, payment integration, and comprehensive admin dashboards for managing students, courses, and analytics.",
       image: "https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800",
-      storeLink: "https://aim-international.vercel.app/in/ts/hyderabad",
-      storeType: "website",
+      storeLink: "",
+      storeType: "none",
       highlights: [
         "Geo-detected routing (country/state/city level)",
         "SEO-optimized dynamic URLs",
@@ -118,14 +126,15 @@ const Projects = () => {
     },
     {
       id: 7,
+      slug: "employee-tracker-hr-system",
       category: "Enterprise",
       title: "Employee Tracker System",
       platform: "Web Application",
       industry: "Enterprise / HR Management / Internal Tools",
       description: "Custom employee attendance and productivity tracking system. Features real-time attendance monitoring, leave management, performance dashboards, and comprehensive reporting for efficient workforce management.",
       image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
-      storeLink: "https://employee-tracker-client-prod.vercel.app/",
-      storeType: "website",
+      storeLink: "",
+      storeType: "none",
       highlights: [
         "Real-time employee attendance tracking",
         "Leave management system",
@@ -136,14 +145,15 @@ const Projects = () => {
     },
     {
       id: 8,
+      slug: "lead-management-crm-system",
       category: "Enterprise",
       title: "Lead Management CRM",
       platform: "Web Application",
       industry: "Enterprise / CRM / Sales Management",
       description: "Custom CRM system for managing leads, tracking follow-ups, and streamlining sales workflows. Features lead qualification, pipeline management, automated notifications, and analytics for improved conversion rates.",
       image: "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800",
-      storeLink: "https://crm-client-snowy.vercel.app/",
-      storeType: "website",
+      storeLink: "",
+      storeType: "none",
       highlights: [
         "Lead tracking and qualification",
         "Sales pipeline management",
@@ -154,6 +164,7 @@ const Projects = () => {
     },
     {
       id: 9,
+      slug: "business-ai-assistant-chatbot",
       category: "AI/Automation",
       title: "Business AI Assistant",
       platform: "Web & API Integration",
@@ -178,18 +189,24 @@ const Projects = () => {
 
   return (
     <>
+      <SEO
+        title="Our Projects & Case Studies | NeoVisionTech"
+        description="Browse our portfolio of successful projects including mobile apps, enterprise software, AI solutions, and SaaS platforms."
+        canonical="https://neovisiontech.com/projects"
+      />
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] py-20 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] pt-8 pb-20 lg:pb-28">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-500px h-500px bg-linear-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl opacity-50" />
           <div className="absolute top-1/2 -left-40 w-400px h-400px bg-linear-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-full blur-3xl opacity-40" />
         </div>
 
+        <Breadcrumbs />
         <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div className="flex flex-col items-start gap-6">
+            <RevealOnScroll className="flex flex-col items-start gap-6">
               <Badge variant="green" dot animated>
                 Case Studies
               </Badge>
@@ -219,10 +236,10 @@ const Projects = () => {
                   <span className="text-sm text-slate-500 dark:text-slate-400">Clients</span>
                 </div>
               </div>
-            </div>
+            </RevealOnScroll>
 
             {/* Right Image */}
-            <div className="relative hidden lg:block">
+            <RevealOnScroll animation="fade-left" className="relative hidden lg:block">
               <div className="relative">
                 {/* Main Image */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
@@ -267,7 +284,7 @@ const Projects = () => {
                 {/* Decorative Elements */}
                 <div className="absolute -z-10 top-8 -right-8 w-full h-full bg-linear-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl" />
               </div>
-            </div>
+            </RevealOnScroll>
           </div>
         </div>
       </section>
@@ -292,7 +309,7 @@ const Projects = () => {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <RevealStagger className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {filteredProjects.map((project) => (
               <article
                 key={project.id}
@@ -357,51 +374,60 @@ const Projects = () => {
                     </ul>
                   </div>
 
-                  {/* CTA Link */}
-                  {project.storeType !== 'none' && (
-                    <div className="mt-auto">
+                  {/* CTA Links */}
+                  <div className="mt-auto flex flex-wrap gap-3">
+                    <Link
+                      to={`/projects/${project.slug}`}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm transition-all"
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      View Case Study
+                    </Link>
+                    {project.storeType !== 'none' && (
                       <a
                         href={project.storeLink}
-                        target={project.storeType === 'website' ? '_blank' : '_blank'}
+                        target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-blue-600 dark:hover:bg-blue-400 font-semibold text-sm transition-all group-hover:scale-105"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100 font-semibold text-sm transition-all"
                       >
                         {project.storeType === 'appstore' ? (
                           <>
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                             </svg>
-                            View on App Store
+                            App Store
                           </>
                         ) : project.storeType === 'playstore' ? (
                           <>
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                             </svg>
-                            View on Play Store
+                            Play Store
                           </>
                         ) : (
                           <>
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
-                            View Live Project
+                            Live Demo
                           </>
                         )}
                       </a>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </article>
             ))}
-          </div>
+          </RevealStagger>
         </div>
       </section>
 
       {/* Stats Section */}
       <section className="py-16 bg-slate-50 dark:bg-white/[0.02]">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <RevealStagger className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: "150+", label: "Projects Completed" },
               { value: "50+", label: "Happy Clients" },
@@ -415,14 +441,14 @@ const Projects = () => {
                 <span className="text-sm text-slate-600 dark:text-slate-400 font-medium">{stat.label}</span>
               </div>
             ))}
-          </div>
+          </RevealStagger>
         </div>
       </section>
 
       {/* Technologies Used Section */}
       <section className="py-20 bg-white dark:bg-transparent">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center mb-12">
+          <RevealOnScroll className="text-center mb-12">
             <Badge variant="purple" className="mb-6">Technologies</Badge>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
               Built with Modern Stack
@@ -430,10 +456,10 @@ const Projects = () => {
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               We use cutting-edge technologies to deliver high-performance solutions
             </p>
-          </div>
+          </RevealOnScroll>
 
           {/* Technology Grid with Icons */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-4 md:gap-6">
+          <RevealStagger className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-4 md:gap-6">
             {technologies.map((tech, i) => (
               <div
                 key={i}
@@ -450,7 +476,7 @@ const Projects = () => {
                 </span>
               </div>
             ))}
-          </div>
+          </RevealStagger>
         </div>
       </section>
 
