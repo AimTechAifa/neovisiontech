@@ -294,10 +294,11 @@ export function ServicesView() {
                   </p>
                   <Link
                     href={service.link}
+                    aria-label={`Explore ${service.title}`}
                     className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:gap-3 transition-all"
                   >
-                    Explore More
-                    <ArrowRight className="w-4 h-4" />
+                    Explore {service.title}
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
                 </div>
               </GlassCard>
@@ -386,7 +387,7 @@ export function ServicesView() {
             <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
               How We <span className="text-blue-500">Deliver</span> Results
             </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
               Our streamlined process ensures that from the first discovery call to final deployment, your project is handled with precision.
             </p>
           </RevealOnScroll>
@@ -394,7 +395,7 @@ export function ServicesView() {
           <RevealStagger className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
             {[
               { step: "01", title: "Discovery", desc: "Understanding the core challenges and requirements." },
-              { step: "02", title: "Strategy", desc: "Crafting the technical architectue and roadmaps." },
+              { step: "02", title: "Strategy", desc: "Crafting the technical architecture and roadmaps." },
               { step: "03", title: "Build", desc: "Agile development with continuous feedback loops." },
               { step: "04", title: "Scale", desc: "Successful launch followed by iterative scaling." },
             ].map((item, i) => (
@@ -404,7 +405,7 @@ export function ServicesView() {
                 </div>
                 <div className="relative">
                   <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm text-slate-300 leading-relaxed">{item.desc}</p>
                 </div>
                 {i < 3 && (
                   <div className="hidden lg:block absolute top-6 -right-12 w-8 h-[1px] bg-slate-700" />

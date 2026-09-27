@@ -39,7 +39,11 @@ Resolution order:
 2. `https://` plus `VERCEL_PROJECT_PRODUCTION_URL` (Vercel sets this to the project production host and does not include a protocol).
 3. `https://neovisiontech.vercel.app`.
 
-Leave `NEXT_PUBLIC_SITE_URL` unset on the Vercel project so production builds use the Vercel production host. The site currently ships at `https://neovisiontech.vercel.app`.
+Leave `NEXT_PUBLIC_SITE_URL` unset on the Vercel project so production builds use the Vercel production host. The site currently ships at `https://neovisiontech.vercel.app`. `neovisiontech.com` redirects to a domain-for-sale page, and `neovisiontech.in` is a parked host. Neither serves this site.
+
+## Published claims
+
+Visible marketing numbers and badges live in `src/content/claims.ts` (founding year, project counts, the Q1 2025 promo, SOC 2, GDPR, and uptime). The privacy “Last updated” line uses the fixed date in that file (`December 29, 2025`), matching `CONTENT_UPDATED_AT`. Those claims are not copied into JSON-LD. The owner should confirm or remove them before treating them as facts.
 
 `https://neovisiontech.com` is not this deployment. That hostname resolves to an unrelated server and returns 404, so it must not be the canonical origin. After DNS for the custom domain points at this Vercel project, set `NEXT_PUBLIC_SITE_URL` to `https://your-domain` (no trailing slash) and redeploy. Every absolute URL switches with that one variable.
 

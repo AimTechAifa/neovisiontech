@@ -10,6 +10,21 @@ type PageMeta = {
   type?: "website" | "article";
 };
 
+/** Collapse a repeated brand suffix such as "About Us | NeoVisionTech | NeoVisionTech". */
+export function uniqueTitle(title: string) {
+  const suffix = ` | ${siteConfig.shortName}`;
+  let value = title.trim().replace(/\s+/g, " ");
+  while (value.endsWith(suffix)) {
+    const without = value.slice(0, -suffix.length).trim();
+    if (without.endsWith(suffix) || without.endsWith(siteConfig.shortName)) {
+      value = without;
+      continue;
+    }
+    break;
+  }
+  return value;
+}
+
 export function pageMetadata({
   title,
   description,
@@ -20,10 +35,11 @@ export function pageMetadata({
 }: PageMeta): Metadata {
   const url = absoluteUrl(path);
   const summary = description.trim() || siteConfig.description;
-  const images = [{ url: absoluteUrl(image?.trim() || "/opengraph-image"), alt: title }];
+  const pageTitle = uniqueTitle(title);
+  const images = [{ url: absoluteUrl(image?.trim() || "/opengraph-image"), alt: pageTitle }];
 
   return {
-    title: { absolute: title },
+    title: { absolute: pageTitle },
     description: summary,
     alternates: {
       canonical: noindex ? undefined : url,
@@ -35,7 +51,7 @@ export function pageMetadata({
     openGraph: {
       type,
       url,
-      title,
+      title: pageTitle,
       description: summary,
       siteName: siteConfig.shortName,
       locale: "en_IN",
@@ -43,7 +59,7 @@ export function pageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: pageTitle,
       description: summary,
       images: images.map((item) => item.url),
     },

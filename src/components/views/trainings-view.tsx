@@ -1,4 +1,5 @@
 import type { Training } from "@/content/types";
+import { publishedClaims } from "@/content/claims";
 import MediaImage from "@/components/media-image";
 import Link from "next/link";
 import { Button, Badge, RevealOnScroll, RevealStagger, Breadcrumbs } from "@/components/ui";
@@ -70,18 +71,12 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
 
                             {/* Quick Stats */}
                             <div className="flex gap-8 mt-4">
-                                <div className="flex flex-col">
-                                    <span className="text-3xl font-black text-blue-600">3000+</span>
-                                    <span className="text-sm text-slate-500 dark:text-slate-400">Students Trained</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-3xl font-black text-indigo-600">15+</span>
-                                    <span className="text-sm text-slate-500 dark:text-slate-400">Courses</span>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-3xl font-black text-purple-600">6</span>
-                                    <span className="text-sm text-slate-500 dark:text-slate-400">Cities</span>
-                                </div>
+                                {publishedClaims.trainingHeroStats.map((stat) => (
+                                    <div key={stat.label} className="flex flex-col">
+                                        <span className="text-3xl font-black text-blue-600">{stat.value}</span>
+                                        <span className="text-sm text-slate-600 dark:text-slate-300">{stat.label}</span>
+                                    </div>
+                                ))}
                             </div>
 
                             <div className="flex flex-wrap gap-4">
@@ -139,6 +134,7 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                         {programs.map((program) => (
                             <Link
                                 href={`/trainings/${program.slug}`}
+                                aria-label={`View details for ${program.title}`}
                                 key={program.slug}
                                 className="group flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-xl dark:shadow-black/30 hover:border-slate-300 dark:hover:border-white/20 transition-all duration-300 hover:-translate-y-1 h-full"
                             >
@@ -177,7 +173,7 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                                     </div>
 
                                     {/* Details */}
-                                    <div className="mt-auto pt-4 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-sm text-slate-500 dark:text-slate-500">
+                                    <div className="mt-auto pt-4 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-sm text-slate-600 dark:text-slate-300">
                                         <span className="flex items-center gap-1.5">
                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 0 11-18 0 9 9 0 0118 0z" />
@@ -185,7 +181,7 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                                             {program.duration}
                                         </span>
                                         <span className="font-semibold text-blue-600 dark:text-blue-400">
-                                            View Details →
+                                            View {program.title}
                                         </span>
                                     </div>
                                 </div>

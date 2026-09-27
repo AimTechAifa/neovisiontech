@@ -23,7 +23,6 @@ export function organizationJsonLd(): JsonLd {
     url: siteConfig.url,
     logo: absoluteUrl(siteConfig.logoPath),
     email: siteConfig.emails.general,
-    foundingDate: siteConfig.foundingYear,
     sameAs: [...siteConfig.sameAs],
     address: {
       "@type": "PostalAddress",

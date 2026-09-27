@@ -17,7 +17,7 @@ import {
   websiteJsonLd,
 } from "@/lib/seo/jsonld";
 import { CONTENT_UPDATED_AT } from "@/content/revision";
-import { pageMetadata } from "@/lib/seo/metadata";
+import { pageMetadata, uniqueTitle } from "@/lib/seo/metadata";
 import { catalogSitemapEntries, indexableSeoEntries, seoPageUrl, staticSitemapEntries } from "@/lib/seo/sitemap";
 import { resolveSiteUrl, siteConfig } from "@/lib/site";
 
@@ -38,7 +38,7 @@ describe("JSON-LD", () => {
     expect(points.length).toBeGreaterThanOrEqual(2);
     expect(points[0]?.email).toContain("@");
     expect(points[0]?.telephone).toMatch(/^\+91/);
-    expect(JSON.stringify(data)).not.toMatch(/ratingValue|aggregateRating|reviewCount/i);
+    expect(JSON.stringify(data)).not.toMatch(/ratingValue|aggregateRating|reviewCount|foundingDate|SOC 2|GDPR/i);
   });
 
   it("describes the website without inventing a search action", () => {
@@ -139,6 +139,38 @@ describe("site origin and metadata", () => {
     );
     expect(resolveSiteUrl({ NEXT_PUBLIC_SITE_URL: "https://example.com/" })).toBe("https://example.com");
     expect(siteConfig.url).not.toContain("neovisiontech.com");
+  });
+
+  it("keeps the brand suffix once", () => {
+    expect(uniqueTitle("About Us | NeoVisionTech | NeoVisionTech")).toBe("About Us | NeoVisionTech");
+    expect(uniqueTitle("Technologies | NeoVisionTech")).toBe("Technologies | NeoVisionTech");
+    const about = pageMetadata({
+      title: "About Us | NeoVisionTech | NeoVisionTech",
+      description: "About NeoVision Tech.",
+      path: "/about",
+    });
+    expect(about.title).toEqual({ absolute: "About Us | NeoVisionTech" });
+    const technologies = pageMetadata({
+      title: "Technologies | NeoVisionTech",
+      description: "Stack",
+      path: "/technologies",
+    });
+    const trainings = pageMetadata({
+      title: "Industrial Training Programs | NeoVisionTech",
+      description: "Courses",
+      path: "/trainings",
+    });
+    const privacy = pageMetadata({
+      title: "Privacy Policy | NeoVisionTech",
+      description: "",
+      path: "/privacy",
+    });
+    expect(technologies.description?.length).toBeGreaterThan(0);
+    expect(technologies.title).toEqual({ absolute: "Technologies | NeoVisionTech" });
+    expect(trainings.title).toEqual({ absolute: "Industrial Training Programs | NeoVisionTech" });
+    expect((trainings.openGraph as { locale?: string }).locale).toBe("en_IN");
+    expect(privacy.description).toBe(siteConfig.description);
+    expect(privacy.title).toEqual({ absolute: "Privacy Policy | NeoVisionTech" });
   });
 
   it("always emits a description, site name, locale, and an absolute image", () => {

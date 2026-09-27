@@ -1,5 +1,6 @@
 import type { Project } from "@/content/types";
 import Link from "next/link";
+import { MarkdownText } from "@/components/markdown-text";
 import MediaImage from "@/components/media-image";
 import { Button, Badge, RevealOnScroll, RevealStagger, GlassCard, Breadcrumbs } from "@/components/ui";
 import { ArrowRight, ArrowLeft, ExternalLink, CheckCircle2, Quote } from "lucide-react";
@@ -119,13 +120,7 @@ export function ProjectDetailView({
                             <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-6">
                                 Understanding the Problem
                             </h2>
-                            <div className="prose dark:prose-invert max-w-none">
-                                {project.challenge.split('\n\n').map((para, i) => (
-                                    <p key={i} className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                                        {para}
-                                    </p>
-                                ))}
-                            </div>
+                            <MarkdownText text={project.challenge} className="text-slate-600 dark:text-slate-300" />
                         </RevealOnScroll>
 
                         {/* Solution */}
@@ -134,13 +129,7 @@ export function ProjectDetailView({
                             <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-6">
                                 How We Solved It
                             </h2>
-                            <div className="prose dark:prose-invert max-w-none">
-                                {project.solution.split('\n\n').map((para, i) => (
-                                    <p key={i} className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                                        {para}
-                                    </p>
-                                ))}
-                            </div>
+                            <MarkdownText text={project.solution} className="text-slate-600 dark:text-slate-300" />
                         </RevealOnScroll>
                     </div>
                 </div>

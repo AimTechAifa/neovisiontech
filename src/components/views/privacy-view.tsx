@@ -1,4 +1,5 @@
 // src/pages/PrivacyPolicy.jsx
+import { publishedClaims } from "@/content/claims";
 import { Badge, Breadcrumbs } from "@/components/ui";
 
 export function PrivacyView() {
@@ -12,7 +13,7 @@ export function PrivacyView() {
                         Privacy Policy
                     </h1>
                     <p className="text-slate-600 dark:text-slate-400">
-                        Last updated: December 29, 2025
+                        Last updated: {publishedClaims.privacyUpdatedLabel}
                     </p>
                 </div>
 

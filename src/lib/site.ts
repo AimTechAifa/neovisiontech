@@ -59,7 +59,6 @@ export const siteConfig = {
     "https://www.instagram.com/neovisiontech/",
   ],
   logoPath: "/images/logo-512.webp",
-  foundingYear: "2014",
 } as const;
 
 export function absoluteUrl(path = "/") {

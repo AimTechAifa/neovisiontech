@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { publishedClaims } from "@/content/claims";
 import MediaImage from "@/components/media-image";
 import Link from "next/link";
 // src/pages/Projects.jsx
@@ -220,18 +221,12 @@ export function ProjectsView() {
 
               {/* Quick Stats */}
               <div className="flex gap-8 mt-4">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-black text-blue-600">150+</span>
-                  <span className="text-sm text-slate-500 dark:text-slate-400">Projects</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-black text-indigo-600">98%</span>
-                  <span className="text-sm text-slate-500 dark:text-slate-400">Success Rate</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-black text-purple-600">50+</span>
-                  <span className="text-sm text-slate-500 dark:text-slate-400">Clients</span>
-                </div>
+                {publishedClaims.projectHeroStats.map((stat) => (
+                  <div key={stat.label} className="flex flex-col">
+                    <span className="text-3xl font-black text-blue-600">{stat.value}</span>
+                    <span className="text-sm text-slate-600 dark:text-slate-300">{stat.label}</span>
+                  </div>
+                ))}
               </div>
             </RevealOnScroll>
 
@@ -272,7 +267,7 @@ export function ProjectsView() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-slate-900 dark:text-white">+85% Growth</p>
+                      <p className="text-sm font-bold text-slate-900 dark:text-white">{publishedClaims.projectRoiLabel}</p>
                       <p className="text-xs text-slate-500 dark:text-slate-400">Average client ROI</p>
                     </div>
                   </div>
@@ -375,18 +370,20 @@ export function ProjectsView() {
                   <div className="mt-auto flex flex-wrap gap-3">
                     <Link
                       href={`/projects/${project.slug}`}
+                      aria-label={`View the ${project.title} case study`}
                       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-semibold text-sm transition-all"
                     >
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
-                      View Case Study
+                      View {project.title} case study
                     </Link>
                     {project.storeType !== 'none' && (
                       <a
                         href={project.storeLink}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`${project.title} on the ${project.storeType === "appstore" ? "App Store" : project.storeType === "playstore" ? "Play Store" : "live site"}`}
                         className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100 font-semibold text-sm transition-all"
                       >
                         {project.storeType === 'appstore' ? (
@@ -425,13 +422,8 @@ export function ProjectsView() {
       <section className="py-16 bg-slate-50 dark:bg-white/[0.02]">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           <RevealStagger className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "150+", label: "Projects Completed" },
-              { value: "50+", label: "Happy Clients" },
-              { value: "98%", label: "Success Rate" },
-              { value: "5+", label: "Years Experience" },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col gap-2">
+            {publishedClaims.projectFooterStats.map((stat) => (
+              <div key={stat.label} className="flex flex-col gap-2">
                 <span className="text-4xl md:text-5xl font-black bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   {stat.value}
                 </span>

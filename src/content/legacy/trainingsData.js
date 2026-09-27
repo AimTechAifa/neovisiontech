@@ -271,7 +271,7 @@ export const trainingPrograms = [
         price: "₹30,000",
         rating: 4.7,
         students: "800+",
-        heroImage: "https://images.pexels.com/photos/186523/pexels-photo-186523.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        heroImage: "https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?auto=compress&cs=tinysrgb&w=1200",
         shortDescription: "Turn data into actionable insights with Tableau. Create interactive dashboards and reports.",
         fullDescription: "Tableau is the industry standard for data visualization. This course teaches you how to connect to various data sources and create stunning, interactive dashboards that drive business decisions. Perfect for Business Analysts and aspiring Data Scientists.",
         metaTitle: "Tableau Training Course | Data Visualization Certification",

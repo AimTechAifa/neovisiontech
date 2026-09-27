@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { publishedClaims } from "@/content/claims";
 import MediaImage from "@/components/media-image";
 // src/pages/Technologies.jsx
 import { Button, Badge, RevealOnScroll, RevealStagger, Breadcrumbs, GlowingEffect, TechCard } from "@/components/ui";
@@ -387,13 +388,8 @@ export function TechnologiesView() {
           </RevealOnScroll>
 
           <RevealStagger className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "99.9%", label: "Uptime Guaranteed", icon: "⚡" },
-              { value: "10x", label: "Faster Development", icon: "🚀" },
-              { value: "50%", label: "Cost Reduction", icon: "💰" },
-              { value: "24/7", label: "Support Available", icon: "🛡️" },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-100 dark:border-white/10 shadow-sm">
+            {publishedClaims.technologyOutcomes.map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-100 dark:border-white/10 shadow-sm">
                 <span className="text-3xl">{stat.icon}</span>
                 <span className="text-3xl md:text-4xl font-black bg-linear-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                   {stat.value}

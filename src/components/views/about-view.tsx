@@ -1,14 +1,11 @@
 import type { Author } from "@/content/types";
+import { publishedClaims } from "@/content/claims";
 import MediaImage from "@/components/media-image";
 import { Button, Card, Badge, RevealOnScroll, RevealStagger, Breadcrumbs } from "@/components/ui";
 
 export function AboutView({ teamMembers }: { teamMembers: Author[] }) {
 
-  const stats = [
-    { value: "500+", label: "Projects Delivered" },
-    { value: "50+", label: "Enterprise Clients" },
-    { value: "10", label: "Years Experience" }
-  ];
+  const stats = publishedClaims.aboutStats;
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-white">
@@ -106,8 +103,8 @@ export function AboutView({ teamMembers }: { teamMembers: Author[] }) {
                 <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
                   From a garage startup to a global technology partner, our journey has been defined by a relentless pursuit of innovation. We help businesses navigate complexity and build resilient digital futures.
                 </p>
-                <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Founded in 2014, NeoVisionTech began with a simple premise: enterprise software shouldn't be cumbersome. Over the last decade, we have expanded our footprint across three continents, serving Fortune 500 companies and agile startups alike. Our growth is a testament to our core belief that technology serves people, not the other way around.
+                <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {publishedClaims.aboutFoundingParagraph}
                 </p>
               </RevealOnScroll>
 
@@ -230,7 +227,7 @@ export function AboutView({ teamMembers }: { teamMembers: Author[] }) {
                       <div className="absolute inset-0  bg-linear-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white">{member.name}</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{member.role}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">{member.role}</p>
                   </div>
                 ))}
               </RevealStagger>

@@ -144,7 +144,7 @@ export function ContactView({
                 </div>
 
                 {/* Floating Chat Card */}
-                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-white/10 rounded-xl shadow-xl dark:shadow-black/20 p-4 border border-slate-100 dark:border-white/20">
+                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-slate-950/90 rounded-xl shadow-xl dark:shadow-black/20 p-4 border border-slate-100 dark:border-white/20">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-linear-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -153,13 +153,13 @@ export function ContactView({
                     </div>
                     <div>
                       <p className="text-sm font-bold text-slate-900 dark:text-white">24/7 Support</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">We're here to help</p>
+                      <p className="text-xs text-slate-700 dark:text-slate-100">We're here to help</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Floating Response Card */}
-                <div className="absolute -top-4 -right-4 bg-white dark:bg-white/10 rounded-xl shadow-xl dark:shadow-black/20 p-4 border border-slate-100 dark:border-white/20">
+                <div className="absolute -top-4 -right-4 bg-white dark:bg-slate-950/90 rounded-xl shadow-xl dark:shadow-black/20 p-4 border border-slate-100 dark:border-white/20">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-linear-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -168,7 +168,7 @@ export function ContactView({
                     </div>
                     <div>
                       <p className="text-sm font-bold text-slate-900 dark:text-white">Fast Response</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">Within 24 hours</p>
+                      <p className="text-xs text-slate-700 dark:text-slate-100">Within 24 hours</p>
                     </div>
                   </div>
                 </div>

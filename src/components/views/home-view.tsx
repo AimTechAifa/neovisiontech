@@ -1,5 +1,6 @@
 import MediaImage from "@/components/media-image";
 import Link from "next/link";
+import { publishedClaims } from "@/content/claims";
 // src/pages/Home.jsx
 import HeroPaths from "@/components/hero-paths";
 import { Button, Badge, SectionTitle, TechCard, RevealOnScroll, GradientText, GlassCard } from "@/components/ui";
@@ -193,7 +194,7 @@ export function HomeView() {
 
                   {/* Floating stat cards - smaller and better positioned */}
                   <div
-                    className="absolute top-4 left-4 z-20 bg-white/95 dark:bg-white/10 backdrop-blur-xl rounded-xl shadow-xl dark:shadow-black/20 p-3 border border-slate-100 dark:border-white/20"
+                    className="absolute top-4 left-4 z-20 bg-white/95 dark:bg-slate-950/90 backdrop-blur-xl rounded-xl shadow-xl dark:shadow-black/20 p-3 border border-slate-100 dark:border-white/20"
                     style={{ animation: 'bounce 3s infinite' }}
                   >
                     <div className="flex items-center gap-2">
@@ -203,14 +204,14 @@ export function HomeView() {
                         </svg>
                       </div>
                       <div>
-                        <span className="block text-xl font-black text-slate-900 dark:text-white">99%</span>
-                        <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wide">Uptime</span>
+                        <span className="block text-xl font-black text-slate-900 dark:text-white">{publishedClaims.homepageUptime.value}</span>
+                        <span className="text-[10px] text-slate-700 dark:text-slate-100 font-semibold uppercase tracking-wide">{publishedClaims.homepageUptime.label}</span>
                       </div>
                     </div>
                   </div>
 
                   <div
-                    className="absolute bottom-4 right-4 z-20 bg-white/95 dark:bg-white/10 backdrop-blur-xl rounded-xl shadow-xl dark:shadow-black/20 p-3 border border-slate-100 dark:border-white/20"
+                    className="absolute bottom-4 right-4 z-20 bg-white/95 dark:bg-slate-950/90 backdrop-blur-xl rounded-xl shadow-xl dark:shadow-black/20 p-3 border border-slate-100 dark:border-white/20"
                     style={{ animation: 'bounce 4s infinite 1s' }}
                   >
                     <div className="flex items-center gap-2">
@@ -220,8 +221,8 @@ export function HomeView() {
                         </svg>
                       </div>
                       <div>
-                        <span className="block text-xl font-black text-emerald-600 dark:text-emerald-400">+40%</span>
-                        <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wide">Growth</span>
+                        <span className="block text-xl font-black text-emerald-700 dark:text-emerald-300">{publishedClaims.homepageGrowth.value}</span>
+                        <span className="text-[10px] text-slate-700 dark:text-slate-100 font-semibold uppercase tracking-wide">{publishedClaims.homepageGrowth.label}</span>
                       </div>
                     </div>
                   </div>
@@ -270,7 +271,7 @@ export function HomeView() {
                     <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                       {service.description}
                     </p>
-                    <Link href={`/services/${service.slug}`} className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <Link href={`/services/${service.slug}`} aria-label={`Learn more about ${service.title}`} className="inline-flex items-center gap-1 text-sm font-semibold text-slate-700 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       Learn more<span className="sr-only"> about {service.title}</span>
                       <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -443,7 +444,7 @@ export function HomeView() {
               <div className="relative">
                 <div className="mb-6">
                   <Badge variant="blue" dot animated>
-                    Limited spots for Q1 2025
+                    {publishedClaims.homepagePromo}
                   </Badge>
                 </div>
 
@@ -476,12 +477,8 @@ export function HomeView() {
 
                 {/* Trust badges */}
                 <div className="flex flex-wrap items-center justify-center gap-6 mt-10 pt-8 border-t border-white/10">
-                  {[
-                    { icon: "🔒", text: "SOC 2 Certified" },
-                    { icon: "⚡", text: "99.9% Uptime SLA" },
-                    { icon: "🌍", text: "GDPR Compliant" },
-                  ].map((badge, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-white/70">
+                  {publishedClaims.trustBadges.map((badge) => (
+                    <div key={badge.text} className="flex items-center gap-2 text-sm text-slate-100">
                       <span>{badge.icon}</span>
                       <span className="font-medium">{badge.text}</span>
                     </div>
