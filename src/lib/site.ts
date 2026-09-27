@@ -2,7 +2,30 @@ export const locales = ["en-IN"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en-IN";
 
-const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://neovisiontech.com";
+const DEFAULT_SITE_URL = "https://neovisiontech.vercel.app";
+
+type SiteEnv = {
+  NEXT_PUBLIC_SITE_URL?: string;
+  VERCEL_PROJECT_PRODUCTION_URL?: string;
+};
+
+/** Explicit NEXT_PUBLIC_SITE_URL, then the Vercel production host, then the known deployment URL. */
+export function resolveSiteUrl(env?: SiteEnv): string {
+  const source: SiteEnv = env ?? {
+    NEXT_PUBLIC_SITE_URL: process.env["NEXT_PUBLIC_SITE_URL"],
+    VERCEL_PROJECT_PRODUCTION_URL: process.env["VERCEL_PROJECT_PRODUCTION_URL"],
+  };
+  const explicit = source.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/$/, "");
+
+  const vercel = source.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercel) {
+    const withProtocol = /^https?:\/\//i.test(vercel) ? vercel : `https://${vercel}`;
+    return withProtocol.replace(/\/$/, "");
+  }
+
+  return DEFAULT_SITE_URL;
+}
 
 export const siteConfig = {
   name: "NeoVision Tech",
@@ -10,7 +33,7 @@ export const siteConfig = {
   title: "NeoVisionTech | Advanced Web & App Development",
   description:
     "Transforming ideas into digital reality with premium web and mobile app development services. Specializing in AI, React, Next.js, and modern tech stacks.",
-  url: rawUrl.replace(/\/$/, ""),
+  url: resolveSiteUrl(),
   locale: defaultLocale,
   localePath: "en-IN",
   emails: {

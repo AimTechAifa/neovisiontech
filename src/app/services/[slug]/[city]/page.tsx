@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string; city: string }> }) {
   const { slug, city } = await params;
   const page = await getServiceCityPage(slug, city);
-  if (!page) return {};
+  if (!page) notFound();
   return pageMetadata({
     title: `${page.title} | NeoVisionTech`,
     description: page.description,

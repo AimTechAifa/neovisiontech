@@ -105,11 +105,11 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                         {/* Right Image */}
                         <RevealOnScroll animation="fade-left" className="relative hidden lg:block">
                             <div className="relative">
-                                <div className="relative rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/40">
+                                <div className="relative h-450px rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/40">
                                     <MediaImage
                                         src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
                                         alt="Students in training"
-                                        className="w-full h-450px object-cover"
+                                        className="object-cover"
                                     />
                                     <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent" />
                                 </div>

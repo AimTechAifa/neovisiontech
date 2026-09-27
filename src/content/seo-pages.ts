@@ -1,5 +1,6 @@
 import { servicesData } from "./legacy/servicesData.js";
 import { projectsData } from "./legacy/projectsData.js";
+import { CONTENT_UPDATED_AT } from "./revision";
 import type { Project, SeoPage, Service } from "./types";
 
 const services = servicesData as Service[];
@@ -16,7 +17,7 @@ export const publishedCities = [
   { city: "Prayagraj", state: "Uttar Pradesh", slug: "prayagraj", source: "office" },
 ] as const;
 
-const UPDATED = "2025-12-29T00:00:00.000Z";
+const UPDATED = CONTENT_UPDATED_AT;
 
 function findService(slug: string) {
   const service = services.find((item) => item.slug === slug);

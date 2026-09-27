@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ template: string; slug: string }> }) {
   const { template, slug } = await params;
   const page = await getSeoPage(template, slug);
-  if (!page) return {};
+  if (!page) notFound();
   return pageMetadata({
     title: `${page.title} | NeoVisionTech`,
     description: page.description,

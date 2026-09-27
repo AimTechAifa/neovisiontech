@@ -18,6 +18,7 @@ export function organizationJsonLd(): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
     logo: absoluteUrl(siteConfig.logoPath),
@@ -57,14 +58,11 @@ export function websiteJsonLd(): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
     name: siteConfig.shortName,
     url: siteConfig.url,
     inLanguage: siteConfig.locale,
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    publisher: { "@id": `${siteConfig.url}/#organization` },
   };
 }
 
@@ -85,16 +83,13 @@ export function serviceJsonLd(service: Service): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${absoluteUrl(`/services/${service.slug}`)}#service`,
     name: service.title,
     description: service.shortDescription,
     serviceType: service.category,
     url: absoluteUrl(`/services/${service.slug}`),
-    image: service.heroImage,
-    provider: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    image: absoluteUrl(service.heroImage),
+    provider: { "@id": `${siteConfig.url}/#organization` },
     areaServed: "IN",
   };
 }
@@ -119,17 +114,14 @@ export function projectJsonLd(project: Project): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": `${absoluteUrl(`/projects/${project.slug}`)}#software`,
     name: project.title,
     description: project.shortDescription,
     applicationCategory: project.category,
     operatingSystem: project.platform,
-    image: project.heroImage,
-    url: project.storeLink && project.storeType !== "none" ? project.storeLink : absoluteUrl(`/projects/${project.slug}`),
-    creator: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    image: absoluteUrl(project.heroImage),
+    url: absoluteUrl(`/projects/${project.slug}`),
+    creator: { "@id": `${siteConfig.url}/#organization` },
   };
 }
 
@@ -163,15 +155,12 @@ export function courseJsonLd(training: Training): JsonLd {
   const node: JsonLd = {
     "@context": "https://schema.org",
     "@type": "Course",
+    "@id": `${absoluteUrl(`/trainings/${training.slug}`)}#course`,
     name: training.title,
     description: training.shortDescription,
     url: absoluteUrl(`/trainings/${training.slug}`),
-    image: training.heroImage,
-    provider: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    image: absoluteUrl(training.heroImage),
+    provider: { "@id": `${siteConfig.url}/#organization` },
     educationalLevel: training.level,
     timeRequired: training.duration,
     hasCourseInstance: trainingLocations.map((location) =>
@@ -196,13 +185,10 @@ export function personJsonLd(author: Author): JsonLd {
   const node: JsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${absoluteUrl("/about")}#${author.slug}`,
     name: author.name,
     jobTitle: author.role,
-    worksFor: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    worksFor: { "@id": `${siteConfig.url}/#organization` },
   };
   if (author.image) node.image = absoluteUrl(author.image);
   return node;

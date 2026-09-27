@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { isIndexableSeoPage } from "@/lib/content";
+import { CONTENT_UPDATED_AT } from "@/content/revision";
 import type { Project, SeoPage, Service, Training } from "@/content/types";
 import { absoluteUrl } from "@/lib/site";
 
@@ -18,7 +19,7 @@ const staticPaths: { path: string; changeFrequency: SitemapEntry["changeFrequenc
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
 ];
 
-export function staticSitemapEntries(lastModified = new Date("2025-12-29")): SitemapEntry[] {
+export function staticSitemapEntries(lastModified = new Date(CONTENT_UPDATED_AT)): SitemapEntry[] {
   return staticPaths.map((item) => ({
     url: absoluteUrl(item.path),
     lastModified,
@@ -32,23 +33,22 @@ export function catalogSitemapEntries(input: {
   projects: Project[];
   trainings: Training[];
 }): SitemapEntry[] {
-  const lastModified = new Date("2025-12-29");
   return [
     ...input.services.map((service) => ({
       url: absoluteUrl(`/services/${service.slug}`),
-      lastModified,
+      lastModified: new Date(service.updatedAt),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
     ...input.projects.map((project) => ({
       url: absoluteUrl(`/projects/${project.slug}`),
-      lastModified,
+      lastModified: new Date(project.updatedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
     ...input.trainings.map((training) => ({
       url: absoluteUrl(`/trainings/${training.slug}`),
-      lastModified,
+      lastModified: new Date(training.updatedAt),
       changeFrequency: "weekly" as const,
       priority: 0.7,
     })),

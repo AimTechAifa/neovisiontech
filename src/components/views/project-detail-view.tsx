@@ -78,11 +78,11 @@ export function ProjectDetailView({
                         <RevealOnScroll animation="fade-left" className="relative hidden lg:block">
                             <div className="relative">
                                 <div className="absolute -inset-4 bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl blur-2xl opacity-20 dark:opacity-40" />
-                                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                                <div className="relative h-400px rounded-2xl overflow-hidden shadow-2xl">
                                     <MediaImage
                                         src={project.heroImage}
                                         alt={project.title}
-                                        className="w-full h-400px object-cover"
+                                        className="object-cover"
                                     />
                                     <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent" />
                                 </div>

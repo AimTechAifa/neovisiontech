@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
-  if (!project) return {};
+  if (!project) notFound();
   return pageMetadata({
     title: project.metaTitle,
     description: project.metaDescription,

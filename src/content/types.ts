@@ -16,6 +16,7 @@ export type Service = {
   technologies: string[];
   process: ProcessStep[];
   faqs: Faq[];
+  updatedAt: string;
 };
 
 export type ProjectResult = { metric: string; value: string; description: string };
@@ -41,6 +42,7 @@ export type Project = {
   features: string[];
   technologies: string[];
   testimonial: ProjectTestimonial | null;
+  updatedAt: string;
 };
 
 export type TrainingModule = {
@@ -69,6 +71,7 @@ export type Training = {
   modules: TrainingModule[];
   outcomes: string[];
   technologies: string[];
+  updatedAt: string;
 };
 
 export type Technology = {

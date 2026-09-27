@@ -2,6 +2,7 @@ import { servicesData } from "../content/legacy/servicesData.js";
 import { projectsData } from "../content/legacy/projectsData.js";
 import { trainingPrograms } from "../content/legacy/trainingsData.js";
 import { contactFaqs } from "../content/faqs";
+import { CONTENT_UPDATED_AT } from "../content/revision";
 import { fallbackSeoPages } from "../content/seo-pages";
 import { team } from "../content/team";
 import { technologyCatalog } from "../content/technology-catalog";
@@ -71,6 +72,7 @@ async function main() {
       useCases: service.useCases,
       technologies: service.technologies,
       process: service.process,
+      updatedAt: new Date(CONTENT_UPDATED_AT),
     })),
   );
 
@@ -116,6 +118,7 @@ async function main() {
       features: project.features,
       technologies: project.technologies,
       testimonial: project.testimonial ?? null,
+      updatedAt: new Date(CONTENT_UPDATED_AT),
     })),
   );
 
@@ -140,6 +143,7 @@ async function main() {
       topics: training.topics,
       outcomes: training.outcomes,
       technologies: training.technologies,
+      updatedAt: new Date(CONTENT_UPDATED_AT),
     })),
   );
 

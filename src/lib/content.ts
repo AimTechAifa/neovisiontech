@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { and, asc, eq } from "drizzle-orm";
 import { contactFaqs } from "@/content/faqs";
+import { CONTENT_UPDATED_AT } from "@/content/revision";
 import { fallbackSeoPages } from "@/content/seo-pages";
 import { team } from "@/content/team";
 import { technologyCatalog } from "@/content/technology-catalog";
@@ -48,6 +49,7 @@ type RawTraining = {
   topics: string[];
   outcomes: string[];
   technologies: string[];
+  updatedAt?: string;
 };
 
 function modulesFromTopics(topics: string[]): TrainingModule[] {
@@ -65,18 +67,21 @@ function normalizeTraining(raw: RawTraining, modules?: TrainingModule[]): Traini
     priceAmount: parseInrAmount(raw.price),
     topics,
     modules: modules && modules.length > 0 ? modules : modulesFromTopics(topics),
+    updatedAt: raw.updatedAt ?? CONTENT_UPDATED_AT,
   };
 }
 
-const fallbackServices: Service[] = (servicesData as Service[]).map((service) => ({
+const fallbackServices: Service[] = (servicesData as Omit<Service, "updatedAt">[]).map((service) => ({
   ...service,
   faqs: service.faqs ?? [],
+  updatedAt: CONTENT_UPDATED_AT,
 }));
 
-const fallbackProjects: Project[] = (projectsData as Project[]).map((project) => ({
+const fallbackProjects: Project[] = (projectsData as Omit<Project, "updatedAt">[]).map((project) => ({
   ...project,
   storeLink: project.storeLink || null,
   testimonial: project.testimonial ?? null,
+  updatedAt: CONTENT_UPDATED_AT,
 }));
 
 const fallbackTrainings: Training[] = (trainingPrograms as RawTraining[]).map((training) =>
@@ -113,6 +118,7 @@ async function loadServices(): Promise<Service[]> {
         useCases: services.useCases,
         technologies: services.technologies,
         process: services.process,
+        updatedAt: services.updatedAt,
       })
       .from(services)
       .orderBy(asc(services.title)),
@@ -131,6 +137,7 @@ async function loadServices(): Promise<Service[]> {
   const faqMap = groupFaqs(faqRows);
   return rows.map((row) => ({
     ...row,
+    updatedAt: row.updatedAt.toISOString(),
     faqs: faqMap.get(`service:${row.slug}`) ?? [],
   }));
 }
@@ -159,9 +166,11 @@ async function loadProjects(): Promise<Project[]> {
       features: projects.features,
       technologies: projects.technologies,
       testimonial: projects.testimonial,
+      updatedAt: projects.updatedAt,
     })
     .from(projects)
-    .orderBy(asc(projects.title));
+    .orderBy(asc(projects.title))
+    .then((rows) => rows.map((row) => ({ ...row, updatedAt: row.updatedAt.toISOString() })));
 }
 
 async function loadTrainings(): Promise<Training[]> {
@@ -189,6 +198,7 @@ async function loadTrainings(): Promise<Training[]> {
         topics: trainings.topics,
         outcomes: trainings.outcomes,
         technologies: trainings.technologies,
+        updatedAt: trainings.updatedAt,
       })
       .from(trainings)
       .orderBy(asc(trainings.title)),
@@ -230,6 +240,7 @@ async function loadTrainings(): Promise<Training[]> {
         topics: row.topics,
         outcomes: row.outcomes,
         technologies: row.technologies,
+        updatedAt: row.updatedAt.toISOString(),
       },
       modulesBySlug.get(row.slug),
     ),

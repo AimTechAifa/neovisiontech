@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import AppToaster from "@/components/toaster";
 import AnimatedBackground from "@/components/ui/animated-background";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/jsonld";
-import { siteConfig } from "@/lib/site";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,13 +22,6 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.shortName,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-IN": "/",
-      "x-default": "/",
-    },
-  },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -36,11 +29,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.shortName,
     title: siteConfig.title,
     description: siteConfig.description,
+    images: [{ url: absoluteUrl("/opengraph-image"), alt: siteConfig.title }],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
+    images: [absoluteUrl("/opengraph-image")],
   },
   robots: { index: true, follow: true },
 };

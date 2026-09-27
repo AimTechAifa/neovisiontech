@@ -1,4 +1,12 @@
 import { Button } from "@/components/ui";
+import { pageMetadata } from "@/lib/seo/metadata";
+
+export const metadata = pageMetadata({
+  title: "Page not found | NeoVisionTech",
+  description: "",
+  path: "/404",
+  noindex: true,
+});
 
 export default function NotFound() {
   return (

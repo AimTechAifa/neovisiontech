@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
-  if (!service) return {};
+  if (!service) notFound();
   return pageMetadata({
     title: service.metaTitle,
     description: service.metaDescription,
