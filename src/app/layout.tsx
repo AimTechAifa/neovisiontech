@@ -44,10 +44,10 @@ const themeScript = `try{if(localStorage.getItem("theme")==="light"){document.do
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN" className={`dark ${inter.className}`} suppressHydrationWarning>
+    <html lang="en" className={`dark ${inter.className}`} suppressHydrationWarning>
+      <JsonLdScript data={[organizationJsonLd(), websiteJsonLd()]} />
       <body className="flex min-h-screen flex-col bg-white text-slate-900 antialiased dark:bg-[#0a0a0a] dark:text-white">
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <JsonLdScript data={[organizationJsonLd(), websiteJsonLd()]} />
         <ThemeProvider>
           <a
             href="#content"

@@ -1,5 +1,7 @@
-import { unstable_cache } from "next/cache";
 import { and, asc, eq } from "drizzle-orm";
+import { marketPages as seedMarketPages } from "@/content/markets/pages";
+import type { MarketPage } from "@/content/markets/types";
+import { withRedisCache } from "@/lib/cache";
 import { contactFaqs } from "@/content/faqs";
 import { CONTENT_UPDATED_AT } from "@/content/revision";
 import { fallbackSeoPages } from "@/content/seo-pages";
@@ -23,6 +25,7 @@ import { getDb } from "@/db";
 import {
   authors,
   faqs,
+  marketPageRows,
   projects,
   seoPages,
   services,
@@ -329,21 +332,71 @@ async function loadSeoPages(): Promise<SeoPage[]> {
   }));
 }
 
-const cached = {
-  services: unstable_cache(loadServices, ["services"], { revalidate: 3600, tags: ["services"] }),
-  projects: unstable_cache(loadProjects, ["projects"], { revalidate: 3600, tags: ["projects"] }),
-  trainings: unstable_cache(loadTrainings, ["trainings"], { revalidate: 3600, tags: ["trainings"] }),
-  technologies: unstable_cache(loadTechnologies, ["technologies"], { revalidate: 3600, tags: ["technologies"] }),
-  authors: unstable_cache(loadAuthors, ["authors"], { revalidate: 3600, tags: ["authors"] }),
-  seoPages: unstable_cache(loadSeoPages, ["seo-pages"], { revalidate: 3600, tags: ["seo-pages"] }),
-};
+async function loadMarketPages(): Promise<MarketPage[]> {
+  const db = getDb();
+  if (!db) return seedMarketPages;
+  const rows = await db
+    .select({
+      locale: marketPageRows.locale,
+      slug: marketPageRows.slug,
+      title: marketPageRows.title,
+      description: marketPageRows.description,
+      h1: marketPageRows.h1,
+      lede: marketPageRows.lede,
+      sections: marketPageRows.sections,
+      faqs: marketPageRows.faqs,
+      primaryCta: marketPageRows.primaryCta,
+      secondaryCta: marketPageRows.secondaryCta,
+      machineDraft: marketPageRows.machineDraft,
+      updatedAt: marketPageRows.updatedAt,
+    })
+    .from(marketPageRows);
+  if (rows.length === 0) return seedMarketPages;
+  const merged = new Map(seedMarketPages.map((page) => [`${page.locale}:${page.slug}`, page]));
+  for (const row of rows) {
+    const locale = row.locale;
+    if (locale !== "en-us" && locale !== "en-gb" && locale !== "en-lu" && locale !== "fr-lu" && locale !== "en-in") {
+      continue;
+    }
+    merged.set(`${locale}:${row.slug}`, {
+      locale,
+      slug: row.slug,
+      title: row.title,
+      description: row.description,
+      h1: row.h1,
+      lede: row.lede,
+      sections: row.sections,
+      faqs: row.faqs ?? undefined,
+      primaryCta: row.primaryCta,
+      secondaryCta: row.secondaryCta ?? undefined,
+      machineDraft: row.machineDraft,
+      updatedAt: row.updatedAt.toISOString(),
+    });
+  }
+  return [...merged.values()];
+}
 
-export const getServices = cached.services;
-export const getProjects = cached.projects;
-export const getTrainings = cached.trainings;
-export const getTechnologies = cached.technologies;
-export const getAuthors = cached.authors;
-export const getSeoPages = cached.seoPages;
+export function getServices() {
+  return withRedisCache("services", ["services"], loadServices);
+}
+export function getProjects() {
+  return withRedisCache("projects", ["projects"], loadProjects);
+}
+export function getTrainings() {
+  return withRedisCache("trainings", ["trainings"], loadTrainings);
+}
+export function getTechnologies() {
+  return withRedisCache("technologies", ["technologies"], loadTechnologies);
+}
+export function getAuthors() {
+  return withRedisCache("authors", ["authors"], loadAuthors);
+}
+export function getSeoPages() {
+  return withRedisCache("seo-pages", ["seo-pages"], loadSeoPages);
+}
+export function getMarketPages() {
+  return withRedisCache("market-pages", ["market-pages"], loadMarketPages);
+}
 
 export async function getServiceBySlug(slug: string) {
   const items = await getServices();
@@ -361,11 +414,12 @@ export async function getTrainingBySlug(slug: string) {
 }
 
 export async function getPageFaqs(entityType: string, entitySlug: string) {
-  return unstable_cache(
-    () => loadFaqs(entityType, entitySlug),
-    ["faqs", entityType, entitySlug],
-    { revalidate: 3600, tags: ["faqs"] },
-  )();
+  return withRedisCache(`faqs:${entityType}:${entitySlug}`, ["faqs"], () => loadFaqs(entityType, entitySlug));
+}
+
+export async function getMarketPage(locale: string, slug: string) {
+  const pages = await getMarketPages();
+  return pages.find((page) => page.locale === locale && page.slug === slug) ?? null;
 }
 
 export async function getSeoPage(template: string, slug: string) {

@@ -5,9 +5,9 @@ Marketing site for NeoVision Tech. Next.js 15 App Router, TypeScript, and Tailwi
 ## Architecture
 
 - **App Router** under `src/app`. Server Components by default. Client components are limited to interactive pieces: header, theme, project and technology filters, contact form, assessment quiz, glowing cards, and animated backgrounds.
-- **Content** is read through `src/lib/content.ts`. That module uses Drizzle when `DATABASE_URL` is set and otherwise returns the legacy catalogs in `src/content/legacy` plus team, FAQ, technology, and programmatic SEO seed data. Queries select the columns each page needs and are cached with `unstable_cache` (1 hour, tag `content`).
-- **Routes preserved from the SPA:** `/`, `/about`, `/services`, `/services/[slug]`, `/projects`, `/projects/[slug]`, `/technologies`, `/trainings`, `/trainings/[slug]`, `/contact`, `/privacy`.
-- **Programmatic SEO** adds `/services/[slug]/[city]` and `/solutions/[template]/[slug]`. See below.
+- **Content** is read through `src/lib/content.ts`. That module uses Drizzle when `DATABASE_URL` is set and otherwise returns the legacy catalogs in `src/content/legacy` plus team, FAQ, technology, programmatic SEO, and market copy in `src/content/markets`. Database rows overlay the seed; an empty table falls back to the seed. Queries go through `withRedisCache` (Upstash Redis when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set, otherwise `unstable_cache`, 1 hour).
+- **Markets** live under `/{locale}`: `en-us`, `en-gb`, `en-lu`, `fr-lu`, `en-in`. `/` is the market chooser and the `x-default` for the home set. Middleware suggests a market from `Accept-Language` or `x-vercel-ip-country` with a cookie and never redirects on language or country. Old unprefixed URLs 301 to the India equivalent. French copy is machine-drafted (`machineDraft`) for owner review.
+- **Programmatic SEO** stays on the India market: `/en-in/services/[slug]/[city]` and `/en-in/solutions/[template]/[slug]`. Training and INR prices are India-only.
 - **APIs:** `POST /api/contact`, `POST /api/ai/quiz`, `POST /api/ai/roadmap`. The same logic is available as server actions in `src/app/actions.ts`.
 - **SEO:** per-page Metadata API titles, descriptions, canonicals, Open Graph, Twitter cards, and `hreflang` alternates (`en-IN` and `x-default`). Every page emits a non-empty description (the site default when a page description is blank), `og:site_name`, `og:url`, `og:locale`, and an absolute `og:image`. JSON-LD covers Organization, WebSite, BreadcrumbList, Service, Course, SoftwareApplication, FAQPage, and Person, with `@id` and absolute `url` values. `app/sitemap.ts` splits static, catalog, and programmatic URLs and sets `lastmod` from each record. `app/robots.ts` is generated. Dynamic OG images use `next/og`. Unknown routes and unknown slugs call `notFound()` and render `app/not-found.tsx` with an HTTP 404. There is no SPA catch-all rewrite.
 - **Home, services, projects, and technologies grids** keep the original page copy and layout. Detail pages, the trainings catalog, the about team, contact options, sitemaps, and programmatic pages read the content layer so a database can replace that data without a redesign.
@@ -26,6 +26,8 @@ Copy `.env.example` to `.env.local`. None of these are required for a production
 | `RESEND_API_KEY` | Resend API key. |
 | `CONTACT_FROM_EMAIL` | From address Resend is allowed to send as. |
 | `CONTACT_TO_EMAIL` | Inbox for leads. Defaults to `contact@neovisiontech.in`. |
+| `UPSTASH_REDIS_REST_URL` | Optional Upstash Redis REST URL. Omit both Redis variables to skip Redis. |
+| `UPSTASH_REDIS_REST_TOKEN` | Optional Upstash token. A missing or failing Redis call falls back to a fresh read. |
 
 Do not commit `.env`, `.env.local`, or any API key. The previous Groq key that lived in the browser bundle has been removed and should stay rotated.
 
@@ -49,7 +51,7 @@ Visible marketing numbers and badges live in `src/content/claims.ts` (founding y
 
 ## Database
 
-Schema lives in `src/db/schema.ts`: services, projects, trainings, training modules, technologies, FAQs, authors, leads, and `seo_pages`. The initial SQL migration is `drizzle/0000_init.sql`.
+Schema lives in `src/db/schema.ts`: services, projects, trainings, training modules, technologies, FAQs, authors, leads, `seo_pages`, and `market_pages` (locale, slug, copy, sections, CTAs, `machine_draft`). Migrations: `drizzle/0000_init.sql`, `drizzle/0001_market_pages.sql`.
 
 ```bash
 npm run db:generate   # drizzle-kit generate, after schema edits

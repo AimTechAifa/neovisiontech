@@ -10,6 +10,7 @@ import {
   timestamp,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
+import type { MarketFaq, MarketSection } from "@/content/markets/types";
 import type { Benefit, ProcessStep, ProjectResult, ProjectTestimonial, SeoSection } from "@/content/types";
 
 export const services = pgTable(
@@ -205,5 +206,30 @@ export const seoPages = pgTable(
     index("seo_pages_locale_idx").on(table.locale),
     index("seo_pages_noindex_idx").on(table.noindex),
     index("seo_pages_updated_at_idx").on(table.updatedAt),
+  ],
+);
+
+export const marketPageRows = pgTable(
+  "market_pages",
+  {
+    id: serial("id").primaryKey(),
+    locale: text("locale").notNull(),
+    slug: text("slug").notNull(),
+    title: text("title").notNull(),
+    description: text("description").notNull(),
+    h1: text("h1").notNull(),
+    lede: text("lede").notNull(),
+    sections: jsonb("sections").$type<MarketSection[]>().notNull(),
+    faqs: jsonb("faqs").$type<MarketFaq[] | null>(),
+    primaryCta: jsonb("primary_cta").$type<{ label: string; href: string }>().notNull(),
+    secondaryCta: jsonb("secondary_cta").$type<{ label: string; href: string } | null>(),
+    machineDraft: boolean("machine_draft").notNull().default(false),
+    noindex: boolean("noindex").notNull().default(false),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("market_pages_locale_slug_idx").on(table.locale, table.slug),
+    index("market_pages_locale_idx").on(table.locale),
+    index("market_pages_updated_at_idx").on(table.updatedAt),
   ],
 );

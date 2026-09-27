@@ -1,19 +1,26 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import MediaImage from "@/components/media-image";
+import { localeFromPath, lp, type Locale } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
 
-const footerLinks = {
-  company: [
-    { label: "About Us", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Projects", href: "/projects" },
-    { label: "Technologies", href: "/technologies" },
-  ],
-  resources: [
-    { label: "Trainings", href: "/trainings" },
-    { label: "Contact", href: "/contact" },
-  ],
-};
+function footerLinks(locale: Locale | null) {
+  const market = locale ?? "en-in";
+  const company = [
+    { label: "About Us", href: lp(market, "/about") },
+    { label: "AI Solutions", href: lp(market, "/ai-solutions") },
+    { label: "Engineering", href: lp(market, "/engineering") },
+    { label: "Case Studies", href: lp(market, "/case-studies") },
+    { label: "Technologies", href: lp(market, "/technologies") },
+  ];
+  const resources = [
+    ...(market === "en-in" ? [{ label: "Trainings", href: lp(market, "/trainings") }] : []),
+    { label: "Contact", href: lp(market, "/contact") },
+  ];
+  return { company, resources, privacy: lp(market, "/privacy"), home: locale ? lp(locale) : "/" };
+}
 
 const socialLinks = [
   {
@@ -41,13 +48,15 @@ const socialLinks = [
 const currentYear = new Date().getFullYear();
 
 export default function Footer() {
+  const locale = localeFromPath(usePathname());
+  const links = footerLinks(locale);
 
   return (
     <footer className="relative w-full bg-slate-50 dark:bg-white/[0.02] border-t border-slate-200 dark:border-white/10">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 group mb-4">
+            <Link href={links.home} className="flex items-center gap-3 group mb-4">
               <div className="relative p-1.5 rounded-xl bg-slate-900 dark:bg-gradient-to-br dark:from-blue-950/30 dark:to-indigo-950/30 backdrop-blur-sm shadow-md">
                 <MediaImage src="/images/neovision-logo.webp" alt="" width={40} height={40} className="w-10 h-10 object-contain" />
               </div>
@@ -80,7 +89,7 @@ export default function Footer() {
           <nav aria-label="Company">
             <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Company</h2>
             <ul className="space-y-2">
-              {footerLinks.company.map((link) => (
+              {links.company.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                     {link.label}
@@ -93,7 +102,7 @@ export default function Footer() {
           <nav aria-label="Resources">
             <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Resources</h2>
             <ul className="space-y-2">
-              {footerLinks.resources.map((link) => (
+              {links.resources.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                     {link.label}
@@ -115,7 +124,7 @@ export default function Footer() {
                 <a href={`mailto:${siteConfig.emails.support}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{siteConfig.emails.support}</a>
               </li>
               <li>
-                <span className="block text-xs text-slate-600 dark:text-slate-300 mb-0.5">Phone</span>
+                <span className="block text-xs text-slate-600 dark:text-slate-300 mb-0.5">Prayagraj office</span>
                 {siteConfig.phones.map((phone, index) => (
                   <span key={phone.tel}>
                     {index > 0 && <span className="mx-1">/</span>}
@@ -130,7 +139,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-slate-200 dark:border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-slate-600 dark:text-slate-400">© {currentYear} NeoVision Tech. All rights reserved.</p>
-            <Link href="/privacy" className="text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <Link href={links.privacy} className="text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Privacy Policy
             </Link>
           </div>

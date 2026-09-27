@@ -80,14 +80,14 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                             </div>
 
                             <div className="flex flex-wrap gap-4">
-                                <Button href="/contact" variant="primary" size="lg" icon={
+                                <Button href="/en-in/contact" variant="primary" size="lg" icon={
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>
                                     }>
                                         Enroll Now
                                     </Button>
-                                <Button href="/trainings" variant="outline" size="lg" icon={
+                                <Button href="/en-in/trainings" variant="outline" size="lg" icon={
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>
@@ -133,7 +133,7 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                     <RevealStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {programs.map((program) => (
                             <Link
-                                href={`/trainings/${program.slug}`}
+                                href={`/en-in/trainings/${program.slug}`}
                                 aria-label={`View details for ${program.title}`}
                                 key={program.slug}
                                 className="group flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-xl dark:shadow-black/30 hover:border-slate-300 dark:hover:border-white/20 transition-all duration-300 hover:-translate-y-1 h-full"
@@ -247,7 +247,7 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                         Join thousands of students who have successfully launched their careers with our training programs. Get started today!
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button href="/contact"
+                        <Button href="/en-in/contact"
                                 variant="white"
                                 size="lg"
                                 icon={
@@ -258,7 +258,7 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                             >
                                 Start Learning Today
                             </Button>
-                        <Button href="/contact"
+                        <Button href="/en-in/contact"
                                 variant="outline"
                                 size="lg"
                                 icon={

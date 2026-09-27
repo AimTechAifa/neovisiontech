@@ -8,6 +8,8 @@ type PageMeta = {
   image?: string;
   noindex?: boolean;
   type?: "website" | "article";
+  languages?: Record<string, string>;
+  ogLocale?: string;
 };
 
 /** Collapse a repeated brand suffix such as "About Us | NeoVisionTech | NeoVisionTech". */
@@ -32,6 +34,8 @@ export function pageMetadata({
   image,
   noindex = false,
   type = "website",
+  languages,
+  ogLocale = "en_IN",
 }: PageMeta): Metadata {
   const url = absoluteUrl(path);
   const summary = description.trim() || siteConfig.description;
@@ -43,7 +47,7 @@ export function pageMetadata({
     description: summary,
     alternates: {
       canonical: noindex ? undefined : url,
-      languages: languageAlternates(path),
+      languages: noindex ? undefined : (languages ?? languageAlternates(path)),
     },
     robots: noindex
       ? { index: false, follow: true }
@@ -54,7 +58,7 @@ export function pageMetadata({
       title: pageTitle,
       description: summary,
       siteName: siteConfig.shortName,
-      locale: "en_IN",
+      locale: ogLocale,
       images,
     },
     twitter: {

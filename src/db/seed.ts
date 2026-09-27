@@ -8,10 +8,12 @@ import { team } from "../content/team";
 import { technologyCatalog } from "../content/technology-catalog";
 import { parseInrAmount, type Project, type Service } from "../content/types";
 import { closeDb, getDb } from "./index";
+import { marketPages } from "../content/markets/pages";
 import {
   authors,
   faqs,
   leads,
+  marketPageRows,
   projects,
   seoPages,
   services,
@@ -47,6 +49,7 @@ async function main() {
     process.exit(1);
   }
 
+  await db.delete(marketPageRows);
   await db.delete(trainingModules);
   await db.delete(faqs);
   await db.delete(leads);
@@ -174,8 +177,26 @@ async function main() {
     })),
   );
 
+  await db.insert(marketPageRows).values(
+    marketPages.map((page) => ({
+      locale: page.locale,
+      slug: page.slug,
+      title: page.title,
+      description: page.description,
+      h1: page.h1,
+      lede: page.lede,
+      sections: page.sections,
+      faqs: page.faqs ?? null,
+      primaryCta: page.primaryCta,
+      secondaryCta: page.secondaryCta ?? null,
+      machineDraft: page.machineDraft,
+      noindex: false,
+      updatedAt: new Date(page.updatedAt),
+    })),
+  );
+
   console.log(
-    `Seeded ${serviceRows.length} services, ${projectRows.length} projects, ${trainingRows.length} trainings, ${fallbackSeoPages.length} SEO pages.`,
+    `Seeded ${serviceRows.length} services, ${projectRows.length} projects, ${trainingRows.length} trainings, ${fallbackSeoPages.length} SEO pages, ${marketPages.length} market pages.`,
   );
   await closeDb();
 }

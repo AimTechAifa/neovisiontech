@@ -5,15 +5,20 @@ import { toast } from "sonner";
 import MediaImage from "@/components/media-image";
 import { submitContact } from "@/app/actions";
 import { Button, Badge, RevealOnScroll, Breadcrumbs } from "@/components/ui";
+import { lp, type Locale } from "@/lib/i18n";
 
 type ContactOption = { title: string };
 
 export function ContactView({
   services,
   trainings,
+  locale = "en-in",
+  showTrainings = true,
 }: {
   services: ContactOption[];
   trainings: ContactOption[];
+  locale?: Locale;
+  showTrainings?: boolean;
 }) {
   const [loading, setLoading] = useState(false);
   const [honeypot, setHoneypot] = useState("");
@@ -84,7 +89,7 @@ export function ContactView({
             <RevealOnScroll className="flex flex-col items-start gap-6">
               {/* Breadcrumbs */}
               {/* <nav className="flex items-center gap-2 text-sm text-slate-500">
-                <a href="/" className="hover:text-blue-600 transition-colors">Home</a>
+                <a href={lp(locale)} className="hover:text-blue-600 transition-colors">Home</a>
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -253,7 +258,7 @@ export function ContactView({
                         />
                         <span className="text-slate-900 dark:text-white font-medium">IT Services</span>
                       </label>
-                      <label className={`flex items-center gap-3 px-5 py-3 rounded-lg border cursor-pointer transition-all ${formData.inquiry_type === 'training' ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-500 dark:border-purple-400' : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 hover:border-purple-300'}`}>
+                      {showTrainings && <label className={`flex items-center gap-3 px-5 py-3 rounded-lg border cursor-pointer transition-all ${formData.inquiry_type === 'training' ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-500 dark:border-purple-400' : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 hover:border-purple-300'}`}>
                         <input
                           type="radio"
                           name="inquiry_type"
@@ -263,7 +268,7 @@ export function ContactView({
                           className="w-4 h-4 text-purple-600 focus:ring-purple-500"
                         />
                         <span className="text-slate-900 dark:text-white font-medium">Industrial Training</span>
-                      </label>
+                      </label>}
                     </div>
                   </div>
 
@@ -326,7 +331,7 @@ export function ContactView({
                       )}
                     </Button>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
-                      By submitting this form, you agree to our <a className="underline hover:text-blue-600" href="/privacy">Privacy Policy</a>.
+                      By submitting this form, you agree to our <a className="underline hover:text-blue-600" href={lp(locale, "/privacy")}>Privacy Policy</a>.
                     </p>
                   </div>
                 </form>
@@ -470,7 +475,7 @@ export function ContactView({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              href="/contact#contact-form"
+              href={`${lp(locale, "/contact")}#contact-form`}
               variant="white"
               size="lg"
               icon={

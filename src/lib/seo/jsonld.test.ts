@@ -18,8 +18,12 @@ import {
 } from "@/lib/seo/jsonld";
 import { CONTENT_UPDATED_AT } from "@/content/revision";
 import { pageMetadata, uniqueTitle } from "@/lib/seo/metadata";
-import { catalogSitemapEntries, indexableSeoEntries, seoPageUrl, staticSitemapEntries } from "@/lib/seo/sitemap";
+import { professionalServiceJsonLd } from "@/lib/seo/jsonld";
+import { catalogSitemapEntries, indexableSeoEntries, localeSitemapEntries, seoPageUrl, staticSitemapEntries } from "@/lib/seo/sitemap";
 import { resolveSiteUrl, siteConfig } from "@/lib/site";
+import { SERVICE_REDIRECTS, legacyRedirect, lp } from "@/lib/i18n";
+import { draftCaseStudies } from "@/content/markets/drafts";
+import { marketPages } from "@/content/markets/pages";
 
 const service = (servicesData as Service[])[0];
 const project = (projectsData as Project[])[0];
@@ -170,6 +174,15 @@ describe("site origin and metadata", () => {
     expect(trainings.title).toEqual({ absolute: "Industrial Training Programs | NeoVisionTech" });
     expect((trainings.openGraph as { locale?: string }).locale).toBe("en_IN");
     expect(privacy.description).toBe(siteConfig.description);
+    const draft = pageMetadata({
+      title: "Draft",
+      description: "Unpublished template",
+      path: "/en-us/case-studies/secure-rag-fintech",
+      noindex: true,
+    });
+    expect(draft.robots).toMatchObject({ index: false });
+    expect(draft.alternates?.canonical).toBeUndefined();
+    expect(draft.alternates?.languages).toBeUndefined();
     expect(privacy.title).toEqual({ absolute: "Privacy Policy | NeoVisionTech" });
   });
 
@@ -188,7 +201,8 @@ describe("site origin and metadata", () => {
 describe("sitemap coverage", () => {
   it("lists privacy and detail pages with lastmod taken from the records", () => {
     const staticUrls = staticSitemapEntries().map((entry) => entry.url);
-    expect(staticUrls).toContain(`${siteConfig.url}/privacy`);
+    expect(staticUrls).toContain(`${siteConfig.url}/en-in/privacy`);
+    expect(staticUrls).toContain(`${siteConfig.url}/`);
     expect(staticSitemapEntries()[0]?.lastModified).toEqual(new Date(CONTENT_UPDATED_AT));
 
     const revised = "2026-01-15T00:00:00.000Z";
@@ -197,13 +211,55 @@ describe("sitemap coverage", () => {
       projects: [{ ...project, updatedAt: revised }],
       trainings: [{ ...(training as Training), modules: [], priceAmount: null, updatedAt: CONTENT_UPDATED_AT }],
     });
+    const servicePath = SERVICE_REDIRECTS[service.slug] ?? `/services/${service.slug}`;
     expect(entries.map((entry) => entry.url)).toEqual([
-      `${siteConfig.url}/services/${service.slug}`,
-      `${siteConfig.url}/projects/${project.slug}`,
-      `${siteConfig.url}/trainings/${training.slug}`,
+      `${siteConfig.url}${lp("en-in", servicePath)}`,
+      `${siteConfig.url}${lp("en-in", `/case-studies/${project.slug}`)}`,
+      `${siteConfig.url}${lp("en-in", `/trainings/${training.slug}`)}`,
     ]);
     expect(entries[0]?.lastModified).toEqual(new Date(revised));
     expect(entries[2]?.lastModified).toEqual(new Date(CONTENT_UPDATED_AT));
+  });
+});
+
+describe("markets", () => {
+  it("keeps US and UK service nodes free of a fabricated street address", () => {
+    const us = professionalServiceJsonLd("en-us");
+    const uk = professionalServiceJsonLd("en-gb");
+    const india = professionalServiceJsonLd("en-in");
+    expect(us["@type"]).toBe("ProfessionalService");
+    expect(us).not.toHaveProperty("address");
+    expect(us).not.toHaveProperty("telephone");
+    expect(JSON.stringify(uk)).not.toMatch(/Bamrauli|211012|\+91/);
+    expect(india.address).toMatchObject({ addressLocality: "Prayagraj", postalCode: "211012" });
+    expect(india.telephone).toMatch(/^\+91/);
+  });
+
+  it("writes distinct market ledes and keeps French pages marked as drafts", () => {
+    const homes = marketPages.filter((page) => page.slug === "home");
+    const ledes = homes.map((page) => page.lede);
+    expect(new Set(ledes).size).toBe(homes.length);
+    const french = marketPages.filter((page) => page.locale === "fr-lu");
+    expect(french.every((page) => page.machineDraft)).toBe(true);
+    expect(french.every((page) => /[àâçéèêëîïôùûüœ]/i.test(`${page.h1} ${page.lede}`))).toBe(true);
+    const joined = marketPages.map((page) => `${page.title} ${page.h1}`).join("\n");
+    expect(joined).not.toMatch(/hallucination-free|GDPR Compliant|SOC 2 Certified|GDPR-compliant/i);
+  });
+
+  it("redirects the previous audience to India and leaves drafts out of the sitemap", () => {
+    expect(legacyRedirect("/projects/alladin-ice-delivery-app")).toBe("/en-in/case-studies/alladin-ice-delivery-app");
+    expect(legacyRedirect("/services/agentic-ai-chatbot-development")).toBe("/en-in/ai-solutions/agentic-ai");
+    expect(legacyRedirect("/about")).toBe("/en-in/about");
+    expect(legacyRedirect("/en-us")).toBeNull();
+    const urls = localeSitemapEntries({
+      locale: "en-us",
+      pages: marketPages,
+      projects: [{ ...project, updatedAt: CONTENT_UPDATED_AT }],
+      trainings: [],
+    }).map((entry) => entry.url);
+    expect(urls.some((url) => url.includes("/trainings"))).toBe(false);
+    expect(urls.some((url) => url.includes("secure-rag-fintech"))).toBe(false);
+    expect(draftCaseStudies.every((draft) => draft.noindex && draft.draft)).toBe(true);
   });
 });
 

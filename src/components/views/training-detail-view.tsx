@@ -48,7 +48,7 @@ export function TrainingDetailView({ training }: { training: Training }) {
                             </div>
 
                             <div className="flex flex-wrap gap-4 mt-2">
-                                <Button href="/contact" size="lg" className="bg-blue-600 hover:bg-blue-700 text-white min-w-[180px]">
+                                <Button href="/en-in/contact" size="lg" className="bg-blue-600 hover:bg-blue-700 text-white min-w-[180px]">
                                         Enroll Now
                                     </Button>
                                 <Button href="#curriculum" variant="outline" size="lg">
@@ -159,7 +159,7 @@ export function TrainingDetailView({ training }: { training: Training }) {
                                 <div className="bg-linear-to-br from-blue-900 to-indigo-900 p-8 rounded-2xl text-white text-center shadow-xl">
                                     <h3 className="text-xl font-bold mb-4">Ready to start learning?</h3>
                                     <p className="text-blue-100 mb-8 text-sm">Join {training.students} students currently enrolled in this course.</p>
-                                    <Button href="/contact" className="w-full bg-white text-blue-900 hover:bg-blue-50 font-bold border-none">
+                                    <Button href="/en-in/contact" className="w-full bg-white text-blue-900 hover:bg-blue-50 font-bold border-none">
                                             Get Syllabus & Pricing
                                         </Button>
                                 </div>

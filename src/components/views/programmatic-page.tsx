@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui";
 import type { SeoPage, Service } from "@/content/types";
+import { SERVICE_REDIRECTS, lp } from "@/lib/i18n";
 
 export function ProgrammaticPage({ page, service }: { page: SeoPage; service: Service | null }) {
   const crumbs = page.template === "service-city" && service
     ? [
-        { label: "Home", path: "/" },
-        { label: "Services", path: "/services" },
-        { label: service.title, path: `/services/${service.slug}` },
+        { label: "Home", path: "/en-in" },
+        { label: "Services", path: "/en-in/services" },
+        { label: service.title, path: lp("en-in", SERVICE_REDIRECTS[service.slug] ?? `/services/${service.slug}`) },
         { label: page.params.city ?? page.title, path: null },
       ]
     : [
-        { label: "Home", path: "/" },
-        { label: "Solutions", path: "/services" },
+        { label: "Home", path: "/en-in" },
+        { label: "Solutions", path: "/en-in/services" },
         { label: page.title, path: null },
       ];
 
@@ -48,7 +49,7 @@ export function ProgrammaticPage({ page, service }: { page: SeoPage; service: Se
         ))}
         {service && (
           <p>
-            <Link href={`/services/${service.slug}`} className="font-semibold text-blue-600 hover:underline">
+            <Link href={lp("en-in", SERVICE_REDIRECTS[service.slug] ?? `/services/${service.slug}`)} className="font-semibold text-blue-600 hover:underline">
               Read the full {service.title} service page
             </Link>
           </p>
