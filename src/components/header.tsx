@@ -32,6 +32,7 @@ export default function Header() {
                 width={40}
                 height={40}
                 priority
+                unoptimized
                 className="w-10 h-10 object-contain transition-transform group-hover:scale-110"
               />
             </div>

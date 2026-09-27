@@ -9,5 +9,10 @@ export const metadata = pageMetadata({
 });
 
 export default function HomePage() {
-  return <HomeView />;
+  return (
+    <>
+      <link rel="preload" as="image" href="/images/hero-technology.webp" fetchPriority="high" />
+      <HomeView />
+    </>
+  );
 }

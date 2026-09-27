@@ -11,6 +11,7 @@ Marketing site for NeoVision Tech. Next.js 15 App Router, TypeScript, and Tailwi
 - **APIs:** `POST /api/contact`, `POST /api/ai/quiz`, `POST /api/ai/roadmap`. The same logic is available as server actions in `src/app/actions.ts`.
 - **SEO:** per-page Metadata API titles, descriptions, canonicals, Open Graph, Twitter cards, and `hreflang` alternates (`en-IN` and `x-default`). JSON-LD covers Organization, WebSite, BreadcrumbList, Service, Course, SoftwareApplication, FAQPage, and Person. `app/sitemap.ts` splits static, catalog, and programmatic URLs. `app/robots.ts` is generated. Dynamic OG images use `next/og`.
 - **Home, services, projects, and technologies grids** keep the original page copy and layout. Detail pages, the trainings catalog, the about team, contact options, sitemaps, and programmatic pages read the content layer so a database can replace that data without a redesign.
+- The homepage hero is a compressed WebP of the same Unsplash photograph the previous site loaded remotely, so the largest image is served from this origin. Animated path backgrounds and the pointer glow load after the first paint.
 
 ## Environment
 

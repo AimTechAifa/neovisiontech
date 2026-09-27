@@ -107,15 +107,15 @@ export default function Footer() {
             <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Contact</h2>
             <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
               <li>
-                <span className="block text-xs text-slate-500 mb-0.5">General Inquiries</span>
+                <span className="block text-xs text-slate-600 dark:text-slate-300 mb-0.5">General Inquiries</span>
                 <a href={`mailto:${siteConfig.emails.general}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{siteConfig.emails.general}</a>
               </li>
               <li>
-                <span className="block text-xs text-slate-500 mb-0.5">Support</span>
+                <span className="block text-xs text-slate-600 dark:text-slate-300 mb-0.5">Support</span>
                 <a href={`mailto:${siteConfig.emails.support}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{siteConfig.emails.support}</a>
               </li>
               <li>
-                <span className="block text-xs text-slate-500 mb-0.5">Phone</span>
+                <span className="block text-xs text-slate-600 dark:text-slate-300 mb-0.5">Phone</span>
                 {siteConfig.phones.map((phone, index) => (
                   <span key={phone.tel}>
                     {index > 0 && <span className="mx-1">/</span>}

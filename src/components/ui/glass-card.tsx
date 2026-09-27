@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { GlowingEffect } from "./glowing-effect";
+import GlowingEffect from "./lazy-glow";
 
 const variants: Record<string, string> = {
   default: "bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 shadow-lg shadow-slate-900/5 dark:shadow-black/20",

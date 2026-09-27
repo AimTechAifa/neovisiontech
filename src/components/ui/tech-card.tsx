@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { GlowingEffect } from "./glowing-effect";
+import GlowingEffect from "./lazy-glow";
 
 export default function TechCard({ name, color, icon }: { name: string; color: string; icon: ReactNode }) {
   return (

@@ -1,7 +1,8 @@
 import MediaImage from "@/components/media-image";
 import Link from "next/link";
 // src/pages/Home.jsx
-import { Button, Badge, SectionTitle, TechCard, RevealOnScroll, GradientText, GlassCard, FloatingPaths } from "@/components/ui";
+import HeroPaths from "@/components/hero-paths";
+import { Button, Badge, SectionTitle, TechCard, RevealOnScroll, GradientText, GlassCard } from "@/components/ui";
 import { technologies } from "@/components/tech-icons";
 
 // Icons as components
@@ -147,8 +148,7 @@ export function HomeView() {
         {/* Hero Section with fixed alignment */}
         <section className="relative w-full overflow-hidden">
           <div className="absolute inset-0 z-0 scale-x-[-1]">
-            <FloatingPaths position={1} />
-            <FloatingPaths position={-1} />
+            <HeroPaths />
           </div>
 
           <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12 py-16 lg:py-20">
@@ -228,10 +228,14 @@ export function HomeView() {
 
                   {/* Main Image - larger and fills the space */}
                   <div className="relative aspect-16/10 rounded-3xl overflow-hidden shadow-2xl dark:shadow-black/40 ring-1 ring-slate-900/10 dark:ring-white/10">
-                    <MediaImage
+                    <img
                       alt="Digital technology visualization"
-                      className="w-full h-full object-cover"
-                      src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=800&fit=crop&auto=format&q=90"
+                      width={960}
+                      height={600}
+                      fetchPriority="high"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover"
+                      src="/images/hero-technology.webp"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-slate-900/30 via-transparent to-transparent" />
                   </div>
@@ -267,7 +271,7 @@ export function HomeView() {
                       {service.description}
                     </p>
                     <Link href={`/services/${service.slug}`} className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      Learn more
+                      Learn more<span className="sr-only"> about {service.title}</span>
                       <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>

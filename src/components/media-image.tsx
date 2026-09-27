@@ -6,6 +6,7 @@ type MediaImageProps = {
   className?: string;
   sizes?: string;
   priority?: boolean;
+  unoptimized?: boolean;
   width?: number;
   height?: number;
 };
@@ -16,6 +17,7 @@ export default function MediaImage({
   className = "",
   sizes,
   priority = false,
+  unoptimized = false,
   width,
   height,
 }: MediaImageProps) {
@@ -29,6 +31,7 @@ export default function MediaImage({
         sizes={sizes ?? `${width}px`}
         className={className}
         priority={priority}
+        unoptimized={unoptimized}
       />
     );
   }
@@ -42,6 +45,7 @@ export default function MediaImage({
         sizes={sizes ?? "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 720px"}
         className={className}
         priority={priority}
+        unoptimized={unoptimized}
       />
     </span>
   );
