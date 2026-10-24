@@ -70,7 +70,7 @@ export function TrainingsView({ programs }: { programs: Training[] }) {
                             </p>
 
                             {/* Quick Stats */}
-                            <div className="flex gap-8 mt-4">
+                            <div className="flex flex-wrap gap-6 sm:gap-8 mt-4">
                                 {publishedClaims.trainingHeroStats.map((stat) => (
                                     <div key={stat.label} className="flex flex-col">
                                         <span className="text-3xl font-black text-blue-600">{stat.value}</span>

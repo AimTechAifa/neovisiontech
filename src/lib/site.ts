@@ -43,7 +43,6 @@ export const siteConfig = {
   },
   phones: [
     { display: "+91 96444 35690", tel: "+919644435690" },
-    { display: "+91 79744 92357", tel: "+917974492357" },
   ],
   address: {
     streetAddress: "Lalbihara, Near Rajasthan Sweet House, Kanpur Road, Bamrauli",

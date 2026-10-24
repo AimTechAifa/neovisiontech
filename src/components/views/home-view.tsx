@@ -158,7 +158,7 @@ export function HomeView() {
               {/* Left: Text Content - 6 columns */}
               <RevealOnScroll animation="fade-up" delay={0} className="flex flex-col gap-8 order-2 lg:order-1 lg:col-span-6">
                 <div className="flex flex-col gap-6">
-                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.05]">
+                  <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.05]">
                     Innovating{" "}
                     <GradientText gradient="primary" className="animate-gradient-x bg-[length:200%_auto]">
                       Tomorrow
@@ -194,7 +194,7 @@ export function HomeView() {
 
                   {/* Floating stat cards - smaller and better positioned */}
                   <div
-                    className="absolute top-4 left-4 z-20 bg-white/95 dark:bg-slate-950/90 backdrop-blur-xl rounded-xl shadow-xl dark:shadow-black/20 p-3 border border-slate-100 dark:border-white/20"
+                    className="absolute top-4 left-4 z-20 bg-white/95 dark:bg-slate-950/90 backdrop-blur-xl rounded-xl shadow-xl dark:shadow-black/20 p-2 sm:p-3 border border-slate-100 dark:border-white/20"
                     style={{ animation: 'bounce 3s infinite' }}
                   >
                     <div className="flex items-center gap-2">
@@ -211,7 +211,7 @@ export function HomeView() {
                   </div>
 
                   <div
-                    className="absolute bottom-4 right-4 z-20 bg-white/95 dark:bg-slate-950/90 backdrop-blur-xl rounded-xl shadow-xl dark:shadow-black/20 p-3 border border-slate-100 dark:border-white/20"
+                    className="absolute bottom-4 right-4 z-20 bg-white/95 dark:bg-slate-950/90 backdrop-blur-xl rounded-xl shadow-xl dark:shadow-black/20 p-2 sm:p-3 border border-slate-100 dark:border-white/20"
                     style={{ animation: 'bounce 4s infinite 1s' }}
                   >
                     <div className="flex items-center gap-2">

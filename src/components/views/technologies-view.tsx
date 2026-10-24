@@ -295,12 +295,12 @@ export function TechnologiesView() {
       <section className="py-12 md:py-16 bg-white dark:bg-transparent">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           {/* Filter Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
             {filters.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`flex h-10 items-center justify-center px-6 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === filter
+                className={`flex h-10 items-center justify-center px-4 sm:px-6 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === filter
                   ? "bg-linear-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/25"
                   : "bg-white dark:bg-transparent border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-purple-300 dark:hover:border-purple-500/50 hover:bg-purple-50 dark:hover:bg-purple-500/10"
                   }`}
@@ -350,7 +350,7 @@ export function TechnologiesView() {
                       {/* Content */}
                       <div>
                         <h3
-                          className="text-lg font-bold text-slate-900 transition-colors duration-300"
+                          className="text-lg font-bold text-slate-900 dark:text-white transition-colors duration-300"
                           onMouseEnter={(e) => { e.currentTarget.style.color = tech.color; }}
                           onMouseLeave={(e) => { e.currentTarget.style.color = ""; }}
                         >
@@ -415,7 +415,7 @@ export function TechnologiesView() {
           </RevealOnScroll>
 
           {/* Technology Grid with Icons */}
-          <RevealStagger className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-4 md:gap-6">
+          <RevealStagger className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10 gap-3 sm:gap-4 md:gap-6">
             {technologies.map((tech, i) => (
               <TechCard
                 key={i}

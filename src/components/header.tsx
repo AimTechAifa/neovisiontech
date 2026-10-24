@@ -83,7 +83,7 @@ export default function Header() {
         </div>
 
         {isMenuOpen && (
-          <div id="mobile-navigation" className="md:hidden py-4 border-t border-slate-100 dark:border-white/10">
+          <div id="mobile-navigation" className="md:hidden py-4 border-t border-slate-100 dark:border-white/10 max-h-[calc(100vh-5rem)] overflow-y-auto">
             <nav className="flex flex-col gap-1" aria-label="Mobile">
               {navLinks.map((link) => (
                 <Link

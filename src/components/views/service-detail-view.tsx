@@ -15,7 +15,7 @@ export function ServiceDetailView({
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] pt-8 pb-20 lg:pb-28">
+            <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] pt-8 pb-16 lg:pb-28">
                 {/* Background decorative elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <div className="absolute -top-40 -right-40 w-500px h-500px bg-linear-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl opacity-50" />
@@ -29,11 +29,24 @@ export function ServiceDetailView({
                 ]} />
 
                 <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                        {/* Hero Image - visible on both mobile and desktop */}
+                        <RevealOnScroll animation="fade-left" className="relative order-1 lg:order-2 w-full">
+                            <div className="relative w-full">
+                                <div className="absolute -inset-4 bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl blur-2xl opacity-20 dark:opacity-40" />
+                                <div className="relative aspect-video sm:aspect-16/10 lg:h-400px rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-900/10 dark:ring-white/10">
+                                    <MediaImage
+                                        src={service.heroImage}
+                                        alt={service.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent" />
+                                </div>
+                            </div>
+                        </RevealOnScroll>
 
-
-                    <div className="grid lg:grid-cols-2 gap-12 items-start">
                         {/* Left Content */}
-                        <RevealOnScroll className="flex flex-col items-start gap-6">
+                        <RevealOnScroll className="flex flex-col items-start gap-6 order-2 lg:order-1">
                             <Badge variant="blue">{service.category}</Badge>
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                                 {service.title}
@@ -48,21 +61,6 @@ export function ServiceDetailView({
                                 <Button href="/projects" variant="outline" size="lg" className="dark:border-white/10 dark:text-white">
                                         View Projects
                                     </Button>
-                            </div>
-                        </RevealOnScroll>
-
-                        {/* Right Image */}
-                        <RevealOnScroll animation="fade-left" className="relative hidden lg:block">
-                            <div className="relative">
-                                <div className="absolute -inset-4 bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl blur-2xl opacity-20 dark:opacity-40" />
-                                <div className="relative h-400px rounded-2xl overflow-hidden shadow-2xl">
-                                    <MediaImage
-                                        src={service.heroImage}
-                                        alt={service.title}
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent" />
-                                </div>
                             </div>
                         </RevealOnScroll>
                     </div>
@@ -135,7 +133,7 @@ export function ServiceDetailView({
                             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-6">
                                 Use Cases & Applications
                             </h2>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                 {service.useCases.map((useCase, i) => (
                                     <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
                                         <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0" />
@@ -240,4 +238,3 @@ export function ServiceDetailView({
         </div>
     );
 };
-

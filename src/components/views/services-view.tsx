@@ -315,7 +315,7 @@ export function ServicesView() {
           className={`py-24 ${index % 2 !== 0 ? 'bg-slate-50 dark:bg-white/[0.02]' : 'bg-white dark:bg-transparent'} border-t border-slate-100 dark:border-white/5`}
         >
           <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
-            <div className={`flex flex-col lg:flex-row gap-16 lg:gap-24 items-center ${service.imagePosition === 'left' ? 'lg:flex-row-reverse' : ''}`}>
+            <div className={`flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-center ${service.imagePosition === 'left' ? 'lg:flex-row-reverse' : ''}`}>
               {/* Content Column */}
               <RevealOnScroll className="w-full lg:w-1/2">
                 <Badge variant="blue" className="mb-6">{service.category}</Badge>

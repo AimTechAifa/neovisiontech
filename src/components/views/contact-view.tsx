@@ -111,7 +111,7 @@ export function ContactView({
               <div className="flex flex-wrap gap-4 mt-4">
                 <a
                   href="mailto:contact@neovisiontech.in"
-                  className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-sm font-medium"
+                  className="inline-flex items-center gap-2 h-11 px-4 sm:px-5 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-sm font-medium max-w-full truncate"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -392,7 +392,6 @@ export function ContactView({
                       Mon-Fri from 9am to 6pm IST
                     </p>
                     <a className="text-blue-600 font-medium hover:underline block" href="tel:+919644435690">+91 96444 35690</a>
-                    <a className="text-blue-600 font-medium hover:underline block mt-1" href="tel:+917974492357">+91 79744 92357</a>
                   </div>
                 </div>
               </div>

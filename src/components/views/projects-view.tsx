@@ -220,7 +220,7 @@ export function ProjectsView() {
               </p>
 
               {/* Quick Stats */}
-              <div className="flex gap-8 mt-4">
+              <div className="flex flex-wrap gap-6 sm:gap-8 mt-4">
                 {publishedClaims.projectHeroStats.map((stat) => (
                   <div key={stat.label} className="flex flex-col">
                     <span className="text-3xl font-black text-blue-600">{stat.value}</span>
@@ -285,12 +285,12 @@ export function ProjectsView() {
       <section className="py-12 md:py-16 bg-white dark:bg-transparent">
         <div className="max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
           {/* Filter Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
             {filters.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`flex h-10 items-center justify-center px-6 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === filter
+                className={`flex h-10 items-center justify-center px-4 sm:px-6 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === filter
                   ? "bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25"
                   : "bg-white dark:bg-transparent border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-blue-300 dark:hover:border-blue-500/50 hover:bg-blue-50 dark:hover:bg-blue-500/10"
                   }`}
@@ -318,7 +318,7 @@ export function ProjectsView() {
                   <div className="absolute inset-0 bg-linear-to-t from-slate-900/50 via-transparent to-transparent" />
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1.5 rounded-lg bg-white/90 backdrop-blur-sm text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider shadow-sm">
+                    <span className="px-3 py-1.5 rounded-lg bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider shadow-sm">
                       {project.category}
                     </span>
                   </div>
@@ -448,7 +448,7 @@ export function ProjectsView() {
           </RevealOnScroll>
 
           {/* Technology Grid with Icons */}
-          <RevealStagger className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-4 md:gap-6">
+          <RevealStagger className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-3 sm:gap-4 md:gap-6">
             {technologies.map((tech, i) => (
               <div
                 key={i}

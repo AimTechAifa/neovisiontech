@@ -41,7 +41,7 @@ export default function GlassCard({
   return (
     <div className={`relative rounded-[1.25rem] border-[0.75px] border-slate-200 dark:border-white/10 p-2 md:rounded-[1.5rem] md:p-3 ${hoverEffects}`}>
       {glowingBorder && (
-        <GlowingEffect spread={40} glow disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
+        <GlowingEffect spread={40} glow disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} className="hidden md:block" />
       )}
       <div className={`relative flex flex-col justify-between gap-6 overflow-hidden rounded-xl border-[0.75px] ${variants[variant] ?? variants.default} p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)] ${className}`}>
         {children}

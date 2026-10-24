@@ -16,7 +16,7 @@ export function ProjectDetailView({
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] pt-8 pb-20 lg:pb-28">
+            <section className="relative w-full overflow-hidden bg-linear-to-b from-slate-50 via-white to-white dark:from-[#0a0a0a] dark:via-[#0f0f0f] dark:to-[#0a0a0a] pt-8 pb-16 lg:pb-28">
                 {/* Background decorative elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <div className="absolute -top-40 -right-40 w-500px h-500px bg-linear-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl opacity-50" />
@@ -30,11 +30,24 @@ export function ProjectDetailView({
                 ]} />
 
                 <div className="relative max-w-1440px mx-auto px-4 md:px-8 lg:px-12">
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                        {/* Hero Image - visible on both mobile and desktop */}
+                        <RevealOnScroll animation="fade-left" className="relative order-1 lg:order-2 w-full">
+                            <div className="relative w-full">
+                                <div className="absolute -inset-4 bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl blur-2xl opacity-20 dark:opacity-40" />
+                                <div className="relative aspect-video sm:aspect-16/10 lg:h-400px rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-900/10 dark:ring-white/10">
+                                    <MediaImage
+                                        src={project.heroImage}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent" />
+                                </div>
+                            </div>
+                        </RevealOnScroll>
 
-
-                    <div className="grid lg:grid-cols-2 gap-12 items-start">
                         {/* Left Content */}
-                        <RevealOnScroll className="flex flex-col items-start gap-6">
+                        <RevealOnScroll className="flex flex-col items-start gap-6 order-2 lg:order-1">
                             <div className="flex flex-wrap gap-2">
                                 <Badge variant="blue">{project.category}</Badge>
                                 <Badge variant="purple">{project.platform}</Badge>
@@ -72,21 +85,6 @@ export function ProjectDetailView({
                                 <Button href="/contact" variant="outline" size="lg" className="dark:border-white/10 dark:text-white">
                                         Start Similar Project
                                     </Button>
-                            </div>
-                        </RevealOnScroll>
-
-                        {/* Right Image */}
-                        <RevealOnScroll animation="fade-left" className="relative hidden lg:block">
-                            <div className="relative">
-                                <div className="absolute -inset-4 bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl blur-2xl opacity-20 dark:opacity-40" />
-                                <div className="relative h-400px rounded-2xl overflow-hidden shadow-2xl">
-                                    <MediaImage
-                                        src={project.heroImage}
-                                        alt={project.title}
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent" />
-                                </div>
                             </div>
                         </RevealOnScroll>
                     </div>
@@ -243,4 +241,3 @@ export function ProjectDetailView({
         </div>
     );
 };
-

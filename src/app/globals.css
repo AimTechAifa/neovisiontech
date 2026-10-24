@@ -331,3 +331,12 @@ body {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
+
+/* Ensure all reveal animated elements are immediately visible on mobile devices */
+@media (max-width: 768px) {
+  [data-reveal],
+  [data-reveal-child] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
